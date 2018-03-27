@@ -38,6 +38,13 @@ public class EarthQuake  {
 		
 	}
 	
+	Scanner input = new Scanner(System.in);
+	
+	switch (input) {
+	case 
+	}
+	
 	
 
 }
+
