@@ -13,7 +13,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		System.out.print("Im so good at this. BOOM");
 		try {
-primaryStage.setTitle("Earthquake Window");
+			primaryStage.setTitle("Earthquake Window");
 			
 			// get an FXML loader and read in the fxml code
 			FXMLLoader loader = new FXMLLoader();
