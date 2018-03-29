@@ -49,7 +49,7 @@ public class Main extends Application {
 						theThing[19], 
 						theThing[20], 
 						theThing[21]));
-				System.out.println("Earthquake Adeded");
+				System.out.println("Earthquake Added");
 			}
 				}
 				
