@@ -4,27 +4,80 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Date;
+import java.util.ArrayList;
 
 
 public class EarthQuake {
-	//Create a file object
 	public static void main(String[] args) {
-		//Read in data from csv file
-		java.io.File theFile = new java.io.File("all_month.csv");
-		try (Scanner input = new Scanner(theFile)) {
-			//Read first line of headers
-			int i = 0;
-			while (input.hasNextLine()) {
-			String[] theThing = input.nextLine().split(",");
-			for (int j = 0; 22 > j; j++) {
-			System.out.print(theThing[j] + "\t");}
-			System.out.println();
-			}
-			
-		}
-		catch (Exception ex) {
-			System.out.println("File could not be opened or data did not match.");
-		}
-	}
+		//Create a file object
+		/*
+		Date time;
+		String latitude;
+		String longitude;
+		String depth;
+		String mag;
+		String magType;
+		int nst;
+		String gap;
+		String dMin;
+		String rms;
+		String net;
+		String id;
+		Date updated;
+		String place;
+		String type;
+		String horizontal;
+		String depthError;
+		String magError;
+		String magNst;
+		String status;
+		String locationSource;
+		String magSource;
+		*/
+		String time;
+		String latitude;
+		String longitude;
+		String depth;
+		String mag;
+		String magType;
+		String nst;
+		String gap;
+		String dMin;
+		String rms;
+		String net;
+		String id;
+		String updated;
+		String place;
+		String type;
+		String horizontal;
+		String depthError;
+		String magError;
+		String magNst;
+		String status;
+		String locationSource;
+		String magSource;
+		
 
+	
+	
 }
+	// No arg-constructor. This means NULL will be used for each value so far
+	public EarthQuake( ) {
+		
+	}
+		
+
+	
+	public EarthQuake(String time, String latitude, String longitude, String depth, 
+			String mag, String magType, String nst, String gap, String dMin, String rms, String net,
+			String id, String updated, String place, String type, String horizontal, String depthError, 
+			String magError, String magNst, String status, String locationSource, String magSource) {
+		
+
+			
+	}
+}
+
+
+
