@@ -11,13 +11,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import java.text.SimpleDateFormat;  
 import java.util.Date;  
-
+import java.util.Scanner;
 
 public class Main extends Application {
+	private ArrayList<EarthQuake> earthArray = new ArrayList<>();
 	@Override
 	public void start(Stage primaryStage) {
 		
-		ArrayList<EarthQuake> earthArray = new ArrayList<>();
+	
 
 		//Read in data from csv file
 		java.io.File theFile = new java.io.File("all_month.csv");
@@ -50,13 +51,15 @@ public class Main extends Application {
 						theThing[20], 
 						theThing[21]));
 				System.out.println("Earthquake Added");
+			    
 			}
 				}
+		
 				
 		catch (Exception ex) {
 			System.out.println("File could not be opened or data did not match." + ex);
 		}
-		
+	
 		
 		
 		
@@ -82,8 +85,27 @@ public class Main extends Application {
 	
 	
 	
-	
 	public static void main(String[] args) {
 		launch(args);
+		
+		String command = "";
+		int arrayLength = earthArray.size();
+		Scanner input = new Scanner(System.in);
+		while (!command.equals("quit")) {
+		System.out.println("Please enter a command: ");
+		command = input.next();
+		switch (command.toLowerCase()) {
+		case "help": System.out.println("Sumarry Button: print out a summary of all of the data (# of events, timerange of the events,etc) Type summary to invoke." + "\n" + 
+				"Print Button: Prints out all the earthquake events. Type print to invoke." + "\n" + "Print By Button: Print out all the Earthquake events, sorted by some field (date, depth, mag, place, status) Click on button, then set field to sort by."
+				+ "\n" + "Search Button: Print out all of the earthquake events that meet some criteria (date, location, depth, mag, magType, place, status). Type search, then set field to search." 
+				+ "\n" + "Help Button: Prints out the description of buttons and how to invoke them. Type help to invoke."); break; 
+		case "summary": System.out.println("# of Earthquake events: " + arrayLength; break;
+		case "print": break;
+		case "printby": break;
+		case "search": break;
+		default: System.out.print("That's not a valid command."); break;
+		}
+		}
 	}
+	
 }
