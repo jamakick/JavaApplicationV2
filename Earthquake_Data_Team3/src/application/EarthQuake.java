@@ -9,32 +9,9 @@ import java.util.ArrayList;
 
 
 public class EarthQuake {
-	public static void main(String[] args) {
+	
 		//Create a file object
-		/*
-		Date time;
-		String latitude;
-		String longitude;
-		String depth;
-		String mag;
-		String magType;
-		int nst;
-		String gap;
-		String dMin;
-		String rms;
-		String net;
-		String id;
-		Date updated;
-		String place;
-		String type;
-		String horizontal;
-		String depthError;
-		String magError;
-		String magNst;
-		String status;
-		String locationSource;
-		String magSource;
-		*/
+		
 		String time;
 		String latitude;
 		String longitude;
@@ -60,10 +37,11 @@ public class EarthQuake {
 		String command= "";
 		
 		
-		
 	
 	
-}
+	
+
+	
 	// No arg-constructor. This means NULL will be used for each value so far
 	public EarthQuake( ) {
 		
@@ -75,19 +53,52 @@ public class EarthQuake {
 			String mag, String magType, String nst, String gap, String dMin, String rms, String net,
 			String id, String updated, String place, String type, String horizontal, String depthError, 
 			String magError, String magNst, String status, String locationSource, String magSource) {
+		this.time = time;
+		this.latitude = latitude;
+		this.locationSource = locationSource;
+		this.longitude= longitude;
+		this.depth = depth;
+		this.mag = mag;
+		this.magType = magType;
+		this.nst = nst;
+		this.gap = gap;
+		this.dMin = dMin;
+		this.rms = rms;
+		this.net = net;
+		this.id= id;
+		this.updated= updated;
+		this.place = place;
+		this.type= type;
+		this.horizontal=horizontal;
+		this.depthError = depthError;
+		this.magError= magError;
+		this.magNst = magNst;
+		this.status = status;
+		this.locationSource = locationSource;
+		this.magSource = magSource;
 		
 
 			
+		
 	}
-
-
+	@Override
+	public String toString() {
+		
+		return "Earthquake Location: " + locationSource +"\n" + "Preferred data source: "+net+"\n" + "EarthQuake ID:" + id + "\n" + "EarthQuakeUpdate: " + updated + "\n" + "Magnitude: "+ mag + "\n" + "Magnitude Type: " + magType + "\n" +"Network reporting Magntitude: "+ magNst + "\n" + "Uncertainty of reported mangitude: " 
+	+ magError + "\n" + "Latitude: " + latitude + "\n" + "Longitude: " + longitude + "\n" + "Depth: " + depth + "\n" + "Seismic Stations required: "+ nst + "\n" + "Largest azimuthal gap between stations: "+ gap + "\n" + "Distance to nearest Station: " +
+	dMin +"\n" + "Location nearest Event: " + place + "\n" + "Type of Seismic event: "+ type + "\n"+ "Review Status: " + status +"\n" + "Uncertainty of Location in km: " + horizontal + "\n" + "Uncertainty of reported depth in km: " + depthError + "\n" + "Magnitude Source: " + magSource;
+	}
 	
-	
-	
-
-
-
-
-	
-
 }
+	
+
+
+	
+	
+	
+
+
+
+
+	
+

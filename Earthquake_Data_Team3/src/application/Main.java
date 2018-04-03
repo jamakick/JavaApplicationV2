@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Main extends Application {
-	private ArrayList<EarthQuake> earthArray = new ArrayList<>();
+	private static ArrayList<EarthQuake> earthArray = new ArrayList<>();
 	@Override
 	public void start(Stage primaryStage) {
 		
@@ -54,15 +54,37 @@ public class Main extends Application {
 			    
 			}
 				}
-		
-				
-		catch (Exception ex) {
+		catch ( Exception ex )  {
 			System.out.println("File could not be opened or data did not match." + ex);
 		}
+		String command = "";
+		int arrayLength = earthArray.size();
+		Scanner input = new Scanner(System.in);
+		while (!command.equals("quit")) {
+		System.out.println("Please enter a command: ");
+		command = input.next();
+		switch (command.toLowerCase()) {
+		case "help": System.out.println("Sumarry Button: print out a summary of all of the data (# of events, timerange of the events,etc) Type summary to invoke." + "\n" + 
+				"Print Button: Prints out all the earthquake events. Type print to invoke." + "\n" + "Print By Button: Print out all the Earthquake events, sorted by some field (date, depth, mag, place, status) Click on button, then set field to sort by."
+				+ "\n" + "Search Button: Print out all of the earthquake events that meet some criteria (date, location, depth, mag, magType, place, status). Type search, then set field to search." 
+				+ "\n" + "Help Button: Prints out the description of buttons and how to invoke them. Type help to invoke."); break; 
+		case "summary": System.out.println("# of Earthquake events: " + arrayLength + "\n" + earthArray.get(0)); break;
+		case "print": for (int i = 0; i < (int)arrayLength; i++) {
+			System.out.println(earthArray.get(i).toString());}
+			break;
+		
+		case "printby": break;
+		case "search": break;
+		default: System.out.print("That's not a valid command."); break;
+		}
+		}
+		
+		
+	}
 	
 		
 		
-		
+		/*
 		System.out.print("Im so good at this. BOOM");
 		try {
 			// set a title for the Window
@@ -81,14 +103,14 @@ public class Main extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	
 	
 	public static void main(String[] args) {
 		launch(args);
 		
-		String command = "";
+		/*String command = "";
 		int arrayLength = earthArray.size();
 		Scanner input = new Scanner(System.in);
 		while (!command.equals("quit")) {
@@ -99,13 +121,13 @@ public class Main extends Application {
 				"Print Button: Prints out all the earthquake events. Type print to invoke." + "\n" + "Print By Button: Print out all the Earthquake events, sorted by some field (date, depth, mag, place, status) Click on button, then set field to sort by."
 				+ "\n" + "Search Button: Print out all of the earthquake events that meet some criteria (date, location, depth, mag, magType, place, status). Type search, then set field to search." 
 				+ "\n" + "Help Button: Prints out the description of buttons and how to invoke them. Type help to invoke."); break; 
-		case "summary": System.out.println("# of Earthquake events: " + arrayLength; break;
+		case "summary": System.out.println("# of Earthquake events: " + arrayLength); break;
 		case "print": break;
 		case "printby": break;
 		case "search": break;
 		default: System.out.print("That's not a valid command."); break;
 		}
-		}
+		}*/
 	}
 	
 }
