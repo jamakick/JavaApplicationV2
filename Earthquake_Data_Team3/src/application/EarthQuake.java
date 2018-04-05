@@ -48,7 +48,7 @@ public class EarthQuake {
 	}
 		
 
-	
+	//earthquake class.
 	public EarthQuake(String time, String latitude, String longitude, String depth, 
 			String mag, String magType, String nst, String gap, String dMin, String rms, String net,
 			String id, String updated, String place, String type, String horizontal, String depthError, 
@@ -81,6 +81,7 @@ public class EarthQuake {
 			
 		
 	}
+	//will print this out when toString is called.
 	@Override
 	public String toString() {
 		

@@ -26,8 +26,10 @@ public class Main extends Application {
 			//Read first line of headers
 			String[] theHeader = input.nextLine().split(",");
 			System.out.print("Got header.");
+			//takes the data from the file and makes it an array line by line.
 			while (input.hasNextLine()) {
 				String[] theThing = input.nextLine().split(",");
+				//inputs each field into the array.
 				earthArray.add(new EarthQuake(theThing[0],
 						theThing[1],
 						theThing[2], 
@@ -57,23 +59,28 @@ public class Main extends Application {
 		catch ( Exception ex )  {
 			System.out.println("File could not be opened or data did not match." + ex);
 		}
+		//Asks for a command to run
 		String command = "";
 		int arrayLength = earthArray.size();
-		Scanner input = new Scanner(System.in);
+		Scanner c_input = new Scanner(System.in);
 		while (!command.equals("quit")) {
 		System.out.println("Please enter a command: ");
-		command = input.next();
+		command = c_input.next();
 		switch (command.toLowerCase()) {
+		//explains what each command does, and explains how to run it. 
 		case "help": System.out.println("Sumarry Button: print out a summary of all of the data (# of events, timerange of the events,etc) Type summary to invoke." + "\n" + 
 				"Print Button: Prints out all the earthquake events. Type print to invoke." + "\n" + "Print By Button: Print out all the Earthquake events, sorted by some field (date, depth, mag, place, status) Click on button, then set field to sort by."
 				+ "\n" + "Search Button: Print out all of the earthquake events that meet some criteria (date, location, depth, mag, magType, place, status). Type search, then set field to search." 
 				+ "\n" + "Help Button: Prints out the description of buttons and how to invoke them. Type help to invoke."); break; 
+		//prints the number of earthquake events, timerange etc.
 		case "summary": System.out.println("# of Earthquake events: " + arrayLength + "\n" + earthArray.get(0)); break;
+		//displays the earthquake events line by line
 		case "print": for (int i = 0; i < (int)arrayLength; i++) {
 			System.out.println(earthArray.get(i).toString());}
 			break;
-		
+		//prints the events sorted by the specified field.
 		case "printby": break;
+		//searches for the specified field and prints it out.
 		case "search": break;
 		default: System.out.print("That's not a valid command."); break;
 		}
@@ -110,24 +117,7 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 		
-		/*String command = "";
-		int arrayLength = earthArray.size();
-		Scanner input = new Scanner(System.in);
-		while (!command.equals("quit")) {
-		System.out.println("Please enter a command: ");
-		command = input.next();
-		switch (command.toLowerCase()) {
-		case "help": System.out.println("Sumarry Button: print out a summary of all of the data (# of events, timerange of the events,etc) Type summary to invoke." + "\n" + 
-				"Print Button: Prints out all the earthquake events. Type print to invoke." + "\n" + "Print By Button: Print out all the Earthquake events, sorted by some field (date, depth, mag, place, status) Click on button, then set field to sort by."
-				+ "\n" + "Search Button: Print out all of the earthquake events that meet some criteria (date, location, depth, mag, magType, place, status). Type search, then set field to search." 
-				+ "\n" + "Help Button: Prints out the description of buttons and how to invoke them. Type help to invoke."); break; 
-		case "summary": System.out.println("# of Earthquake events: " + arrayLength); break;
-		case "print": break;
-		case "printby": break;
-		case "search": break;
-		default: System.out.print("That's not a valid command."); break;
-		}
-		}*/
+		
 	}
 	
 }
