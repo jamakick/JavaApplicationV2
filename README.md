@@ -15,11 +15,14 @@ It’ll keep printing this line after a command is run until “quits” is inpu
 The options are help, summary, print, printby, and search. 
 It uses a switch case on the user’s input to determine which command it should run or if it needs to print out the error statement 
 saying that it’s not an available command. Help prints out a summary of each command and how to call them. 
-Summary prints out the number of events and a time range of the events. Print prints out all the data from the events. 
+Summary prints out the number of events and a time range of the events. It does this with getter functions and the .size() method.
+Print prints out all the data from the events using the toString method.
 Print by does the same thing but it’ll sort the data by whatever field the user inputs. 
+It will be done by using comparators and getter functions from the earthquake class. It then prints the values sorted by the field given.
 When you call print by it will ask for another input for the field to sort the data by. 
 Search will print out the data fields that the user searched for. 
-When you call search it will ask for another input for the field to search for. 
-The earthquake.java has the earthquake class set up. 
+When you call search it will ask for another input for the field to search for.
+It uses the getter methods to print out the data from the inputted field and a switch case method to obtain the specific getter
+that's called. The earthquake.java has the earthquake class set up. 
 These objects are created from the earthquake events and all the variables are all of the columns from the csv file. 
 They’re all string variables. The toString method prints out the name of the field and then the data associated with the field. 
