@@ -23,6 +23,6 @@ When you call print by it will ask for another input for the field to sort the d
 Search will print out the data fields that the user searched for. 
 When you call search it will ask for another input for the field to search for.
 It uses the getter methods to print out the data from the inputted field and a switch case method to obtain the specific getter
-that's called. The earthquake.java has the earthquake class set up. 
+that's called. It then uses a for loop to print that field from all the events. The earthquake.java has the earthquake class set up. 
 These objects are created from the earthquake events and all the variables are all of the columns from the csv file. 
 They’re all string variables. The toString method prints out the name of the field and then the data associated with the field. 
