@@ -90,6 +90,72 @@ public class EarthQuake {
 	dMin +"\n" + "Location nearest Event: " + place + "\n" + "Type of Seismic event: "+ type + "\n"+ "Review Status: " + status +"\n" + "Uncertainty of Location in km: " + horizontal + "\n" + "Uncertainty of reported depth in km: " + depthError + "\n" + "Magnitude Source: " + magSource;
 	}
 	
+	public String getTime() {
+		return this.time;
+	}
+	public String getLat() {
+		return this.latitude;
+	}
+	public String getLong() {
+		return this.longitude;
+	}
+	public String getLocSource() {
+		return this.locationSource;
+	}
+	public String getNet() {
+		return this.net;
+	}
+	public String getID() {
+		return this.id;
+	}
+	public String getUpdate() {
+		return this.updated;
+	}
+	public String getMag() {
+		return this.mag;
+	}
+	public String getMagType() {
+		return this.magType;
+	}
+	public String getMagNet() {
+		return this.magNst;
+	}
+	public String getMagError() {
+		return this.magError;
+	}
+	public String getMagSource() {
+		return this.magSource;
+	}
+	public String getDepth() {
+		return this.depth;
+	}
+	public String getDepthError() {
+		return this.depthError;
+	}
+	public String getNst() {
+		return this.nst;
+	}
+	public String getRms() {
+		return this.rms;
+	}
+	public String getPlace() {
+		return this.place;
+	}
+	public String getGap() {
+		return this.gap;
+	}
+	public String getDmin() {
+		return this.dMin;
+	}
+	public String getType() {
+		return this.type;
+	}
+	public String getHorizontal() {
+		return this.horizontal;
+	}
+	public String getStatus() {
+		return this.status;
+	}
 }
 	
 

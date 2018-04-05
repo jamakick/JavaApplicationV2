@@ -63,6 +63,7 @@ public class Main extends Application {
 		String command = "";
 		int arrayLength = earthArray.size();
 		Scanner c_input = new Scanner(System.in);
+		
 		while (!command.equals("quit")) {
 		System.out.println("Please enter a command: ");
 		command = c_input.next();
@@ -79,7 +80,11 @@ public class Main extends Application {
 			System.out.println(earthArray.get(i).toString());}
 			break;
 		//prints the events sorted by the specified field.
-		case "printby": break;
+		case "printby": System.out.print("What field do you want it sorted by?: ");
+			String byField = c_input.next();  
+			switch (byField.toLowerCase()) {
+			case "time": 
+			}
 		//searches for the specified field and prints it out.
 		case "search": break;
 		default: System.out.print("That's not a valid command."); break;
