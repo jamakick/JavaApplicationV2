@@ -167,7 +167,7 @@ public class Main extends Application {
 			case "mag" :
 				Collections.sort(earthArray, EarthQuake.MagnitudeComparator);
 				for(EarthQuake earth: earthArray) {
-					System.out.println(earth.getMag());
+					System.out.println(earth);
 				}break;
 			case "place" :
 				Collections.sort(earthArray, EarthQuake.PlaceComparator);
