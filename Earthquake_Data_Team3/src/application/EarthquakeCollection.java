@@ -1,3 +1,4 @@
+/*
 package application;
 import java.util.ArrayList;
 //this file ended up not being used.
@@ -13,6 +14,6 @@ public class EarthquakeCollection {
 		
 		
 		//SearchBy methods to return earthQList
-	}
+	//}
 	
-}
+//}
