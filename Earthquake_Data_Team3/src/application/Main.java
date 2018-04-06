@@ -2,6 +2,7 @@ package application;
 	
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -149,8 +150,44 @@ public class Main extends Application {
 			System.out.println(earthArray.get(i).toString());}
 			break;
 		//prints the events sorted by the specified field.
-		case "printby": System.out.print("What field do you want it sorted by?: ");
-			String byField = c_input.next();  
+	        case "printby": 
+			System.out.println("Please enter a printBy: ");
+			String printbyStuff = c_input.next();
+			switch (printbyStuff.toLowerCase()) {
+			case "depth" :
+				Collections.sort(earthArray, EarthQuake.DepthComparator);
+				for(EarthQuake earth: earthArray) {
+					System.out.println(earth);
+				}break;
+			case "date" :
+				Collections.sort(earthArray, EarthQuake.DateComparator);
+				for(EarthQuake earth: earthArray) {
+					System.out.println(earth);
+				}break;
+			case "mag" :
+				Collections.sort(earthArray, EarthQuake.MagnitudeComparator);
+				for(EarthQuake earth: earthArray) {
+					System.out.println(earth.getMag());
+				}break;
+			case "place" :
+				Collections.sort(earthArray, EarthQuake.PlaceComparator);
+				for(EarthQuake earth: earthArray) {
+					System.out.println(earth);
+				}break;
+			case "status" :
+				Collections.sort(earthArray, EarthQuake.StatusComparator);
+				for(EarthQuake earth: earthArray) {
+					System.out.println(earth);
+				} break;
+				
+			
+			}
+			
+			
+
+			
+			break;
+			
 			
 		//searches for the specified field and prints it out.
 			
