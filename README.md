@@ -7,6 +7,7 @@ Then, someone said that GUIs were going to be used in part 2, so we kept the pro
 There 3 other branches besides master. One for each role: Architect, Documenter, and Tester. 
 We have a main.java file and an Earthquake.java file. 
 The main.java file collects the csv file, using Scanner and java.io, that contains all the earthquake events. 
+We edited the all_month.csv file and replaced the comma in the place field with a space.
 Then, we split the file by commas on the headers. 
 Then, we split the content of the file by commas and ran through each line and inputting it in an arraylist, using a while loop 
 and the .add method. The arraylist consists of all the earthquake events where each event is a point in the arraylist. 
@@ -15,8 +16,8 @@ It’ll keep printing this line after a command is run until “quits” is inpu
 The options are help, summary, print, printby, and search. 
 It uses a switch case on the user’s input to determine which command it should run or if it needs to print out the error statement 
 saying that it’s not an available command. Help prints out a summary of each command and how to call them. 
-Summary prints out the number of events and a time range of the events. It will also show the min and max values of magnitude, gap,etc.
-The min and max values will be grabbed by sorting the data and grabbing the first and last values.
+Summary prints out the number of events and a time range of the events. It will also show the average values of magnitude, gap, nst, and rms.
+The average values are grabbed by casting the values to doubles and adding them to a total then dividing by length of the array.
 We get the # of events with getter functions and the .size() method.
 Print prints out all the data from the events using the toString method.
 Print by does the same thing but it’ll sort the data by whatever field the user inputs. 
