@@ -2,6 +2,7 @@ package application;
 	
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import java.text.SimpleDateFormat;  
-import java.util.Date;  
+import java.util.Date;
+import java.util.List;  
+import java.util.*;
 
 
 public class Main extends Application {
@@ -51,11 +54,13 @@ public class Main extends Application {
 						theThing[21]));
 				//System.out.println("Earthquake Adeded");
 			}
+			
 				}
 				
 		catch (Exception ex) {
 			System.out.println("File could not be opened or data did not match." + ex);
 		}
+		System.out.println(earthArray.size());
 		
 		String command = "";
 		int arrayLength = earthArray.size();
@@ -68,12 +73,46 @@ public class Main extends Application {
 				"Print Button: Prints out all the earthquake events. Type print to invoke." + "\n" + "Print By Button: Print out all the Earthquake events, sorted by some field (date, depth, mag, place, status) Click on button, then set field to sort by."
 				+ "\n" + "Search Button: Print out all of the earthquake events that meet some criteria (date, location, depth, mag, magType, place, status). Type search, then set field to search." 
 				+ "\n" + "Help Button: Prints out the description of buttons and how to invoke them. Type help to invoke."); break; 
-		case "summary": System.out.println("# of Earthquake events: " + arrayLength + "\nTime of earthquakes are between " + earthArray.get(0).getTime() + " and " + earthArray.get(9905).getTime()); break;
+		case "summary": System.out.println("# of Earthquake events: " + arrayLength + "\nTime of earthquakes are between"); break;
 		case "print": for (int i = 0; i < (int)arrayLength; i++) {
 			System.out.println(earthArray.get(i).toString());}
 			break;
 		//prints the events sorted by the specified field.
 		case "printby": 
+			System.out.println("Please enter a printBy: ");
+			String printbyStuff = input.next();
+			switch (printbyStuff.toLowerCase()) {
+			case "depth" :
+				Collections.sort(earthArray, EarthQuake.DepthComparator);
+				for(EarthQuake earth: earthArray) {
+					System.out.println(earth);
+				}
+			case "date" :
+				Collections.sort(earthArray, EarthQuake.DateComparator);
+				for(EarthQuake earth: earthArray) {
+					System.out.println(earth);
+				}
+			case "mag" :
+				Collections.sort(earthArray, EarthQuake.MagnitudeComparator);
+				for(EarthQuake earth: earthArray) {
+					System.out.println(earth.getMag());
+				}
+			case "place" :
+				Collections.sort(earthArray, EarthQuake.PlaceComparator);
+				for(EarthQuake earth: earthArray) {
+					System.out.println(earth);
+				}
+			case "status" :
+				Collections.sort(earthArray, EarthQuake.StatusComparator);
+				for(EarthQuake earth: earthArray) {
+					System.out.println(earth);
+				} 
+				
+			
+			}
+			
+			
+
 			
 			break;
 		//searches for the specified field and prints it out.
@@ -83,7 +122,7 @@ public class Main extends Application {
 		}
 		}
 	
-		
+	
 		
 		
 		
