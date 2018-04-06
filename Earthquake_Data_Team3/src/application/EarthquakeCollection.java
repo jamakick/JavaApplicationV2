@@ -1,6 +1,6 @@
 package application;
 import java.util.ArrayList;
-
+//this file ended up not being used.
 public class EarthquakeCollection {
 //Holds EarthQuake Objects
 	public static void main(String[] args) {
