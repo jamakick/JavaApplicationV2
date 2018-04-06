@@ -22,7 +22,7 @@ public class Main extends Application {
 	
 
 		//Read in data from csv file
-		java.io.File theFile = new java.io.File("all_month.csv");
+		java.io.File theFile = new java.io.File("all_month1.csv");
 		try (Scanner input = new Scanner(theFile)) {
 			//Read first line of headers
 			String[] theHeader = input.nextLine().split(",");
