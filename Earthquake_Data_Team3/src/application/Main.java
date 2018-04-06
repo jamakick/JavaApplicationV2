@@ -25,7 +25,7 @@ public class Main extends Application {
 		try (Scanner input = new Scanner(theFile)) {
 			//Read first line of headers
 			String[] theHeader = input.nextLine().split(",");
-			System.out.print("Got header.");
+			
 			//takes the data from the file and makes it an array line by line.
 			while (input.hasNextLine()) {
 				String[] theThing = input.nextLine().split(",");
@@ -52,7 +52,7 @@ public class Main extends Application {
 						theThing[19], 
 						theThing[20], 
 						theThing[21]));
-				System.out.println("Earthquake Added");
+				
 			    
 			}
 				}
@@ -63,7 +63,17 @@ public class Main extends Application {
 		String command = "";
 		int arrayLength = earthArray.size();
 		Scanner c_input = new Scanner(System.in);
-		
+		double totalM= 0.0;
+		double avgM = 0.0;
+		double avgD = 0.0;
+		double totalD= 0.0;
+		double avgG = 0.0;
+		double totalG= 0.0;
+		double avgN = 0.0;
+		double totalN= 0.0;
+		double avgR = 0.0;
+		double totalR= 0.0;
+		double arrayLengthD = arrayLength;
 		while (!command.equals("quit")) {
 		System.out.println("Please enter a command: ");
 		command = c_input.next();
@@ -74,7 +84,66 @@ public class Main extends Application {
 				+ "\n" + "Search Button: Print out all of the earthquake events that meet some criteria (date, location, depth, mag, magType, place, status). Type search, then set field to search." 
 				+ "\n" + "Help Button: Prints out the description of buttons and how to invoke them. Type help to invoke."+ "\n" + "Type 'quit' to break the command line."); break; 
 		//prints the number of earthquake events, timerange etc.
-		case "summary": System.out.println("# of Earthquake events: " + arrayLength + "\n" + earthArray.get(0)); break;
+		case "summary": for (int i = 0; i < (int)arrayLength; i++) {
+			String sValue = earthArray.get(i).getMag();
+			if (sValue.equals("")) {
+				
+			} else {
+			double valueM = Double.parseDouble(sValue);
+			totalM += valueM;
+			}
+			
+			avgM = totalM /arrayLengthD;
+			}
+		for (int i = 0; i < (int)arrayLength; i++) {
+			String dValue = earthArray.get(i).getDepth();
+			if (dValue.equals("")) {
+				
+			} else {
+			double valueD = Double.parseDouble(dValue);
+			totalD += valueD;
+			}
+			
+			avgD = totalD /arrayLengthD;
+			}
+		for (int i = 0; i < (int)arrayLength; i++) {
+			String gValue = earthArray.get(i).getGap();
+			if (gValue.equals("")) {
+				
+			} else {
+			double valueG = Double.parseDouble(gValue);
+			totalG += valueG;
+			}
+			
+			avgG = totalG /arrayLengthD;
+			}
+		for (int i = 0; i < (int)arrayLength; i++) {
+			String nValue = earthArray.get(i).getNst();
+			if (nValue.equals("")) {
+				
+			} else {
+			double valueN = Double.parseDouble(nValue);
+			totalN += valueN;
+			}
+			
+			avgN = totalN /arrayLengthD;
+			}
+		for (int i = 0; i < (int)arrayLength; i++) {
+			String rValue = earthArray.get(i).getRms();
+			if (rValue.equals("")) {
+				
+			} else {
+			double valueR = Double.parseDouble(rValue);
+			totalR += valueR;
+			}
+			
+			avgR = totalR /arrayLengthD;
+			}
+			System.out.println("# of Earthquake events: " + arrayLength + "\n" + "Timerange: " + 
+			earthArray.get(0).getTime() + " and " + earthArray.get(9905).getTime() + "\n" + "Average Magnitude: " + avgM + "\n"
+			+ "Average Depth: " + avgD + "\n" + "Average Gap: " + avgG + "\n" + "Average Nst: " + avgN + "\n" + "Average RMS: "+ avgR);
+		
+    		  break;
 		//displays the earthquake events line by line
 		case "print": for (int i = 0; i < (int)arrayLength; i++) {
 			System.out.println(earthArray.get(i).toString());}
@@ -100,7 +169,7 @@ public class Main extends Application {
 			System.out.println(earthArray.get(i).getLong());}
 			
 		break;
-		case "locationSource": for (int i = 0; i < (int)arrayLength; i++) {
+		case "locationsource": for (int i = 0; i < (int)arrayLength; i++) {
 			System.out.println(earthArray.get(i).getLocSource());}
 			
 		break;
@@ -120,19 +189,19 @@ public class Main extends Application {
 			System.out.println(earthArray.get(i).getMag());}
 			
 		break;
-		case "magType": for (int i = 0; i < (int)arrayLength; i++) {
+		case "magtype": for (int i = 0; i < (int)arrayLength; i++) {
 			System.out.println(earthArray.get(i).getMagType());}
 			
 		break;
-		case "magNst": for (int i = 0; i < (int)arrayLength; i++) {
+		case "magnst": for (int i = 0; i < (int)arrayLength; i++) {
 			System.out.println(earthArray.get(i).getMagNet());}
 			
 		break;
-		case "magError": for (int i = 0; i < (int)arrayLength; i++) {
+		case "magerror": for (int i = 0; i < (int)arrayLength; i++) {
 			System.out.println(earthArray.get(i).getMagError());}
 			
 		break;
-		case "magSource": for (int i = 0; i < (int)arrayLength; i++) {
+		case "magsource": for (int i = 0; i < (int)arrayLength; i++) {
 			System.out.println(earthArray.get(i).getMagSource());}
 			
 		break;
@@ -140,7 +209,7 @@ public class Main extends Application {
 			System.out.println(earthArray.get(i).getDepth());}
 			
 		break;
-		case "depthError": for (int i = 0; i < (int)arrayLength; i++) {
+		case "deptherror": for (int i = 0; i < (int)arrayLength; i++) {
 			System.out.println(earthArray.get(i).getDepthError());}
 			
 		break;
@@ -158,7 +227,7 @@ public class Main extends Application {
 			System.out.println(earthArray.get(i).getGap());}
 			
 		break;
-		case "dMin": for (int i = 0; i < (int)arrayLength; i++) {
+		case "dmin": for (int i = 0; i < (int)arrayLength; i++) {
 			System.out.println(earthArray.get(i).getDmin());}
 			
 		break;

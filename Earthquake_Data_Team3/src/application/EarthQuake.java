@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 
 public class EarthQuake {
@@ -87,7 +88,7 @@ public class EarthQuake {
 		
 		return "Earthquake Location: " + locationSource +"\n" + "Preferred data source: "+net+"\n" + "EarthQuake ID:" + id + "\n" + "EarthQuakeUpdate: " + updated + "\n" + "Magnitude: "+ mag + "\n" + "Magnitude Type: " + magType + "\n" +"Network reporting Magntitude: "+ magNst + "\n" + "Uncertainty of reported mangitude: " 
 	+ magError + "\n" + "Latitude: " + latitude + "\n" + "Longitude: " + longitude + "\n" + "Depth: " + depth + "\n" + "Seismic Stations required: "+ nst + "\n" + "Largest azimuthal gap between stations: "+ gap + "\n" + "Distance to nearest Station: " +
-	dMin +"\n" + "Location nearest Event: " + place + "\n" + "Type of Seismic event: "+ type + "\n"+ "Review Status: " + status +"\n" + "Uncertainty of Location in km: " + horizontal + "\n" + "Uncertainty of reported depth in km: " + depthError + "\n" + "Magnitude Source: " + magSource;
+	dMin +"\n" + "Root mean Square(travel time in seconds): " + rms + "\n" + "Location nearest Event: " + place + "\n" + "Type of Seismic event: "+ type + "\n"+ "Review Status: " + status +"\n" + "Uncertainty of Location in km: " + horizontal + "\n" + "Uncertainty of reported depth in km: " + depthError + "\n" + "Magnitude Source: " + magSource;
 	}
 	//Getter methods
 	public String getTime() {
@@ -156,7 +157,44 @@ public class EarthQuake {
 	public String getStatus() {
 		return this.status;
 	}
+	//Latitude
+			
+	
+			//Depth
+			public static Comparator<EarthQuake> DepthComparator = new Comparator<EarthQuake>() {
+			// Compares To Methods
+			public int compare(EarthQuake arg0, EarthQuake arg1) {
+				return arg0.getDepth().compareTo(arg1.getDepth());
+		}
+	};
+			//Magnitude
+			public static Comparator<EarthQuake> MagnitudeComparator = new Comparator<EarthQuake>() {
+			// Compares To Methods
+			public int compare(EarthQuake arg0, EarthQuake arg1) {
+				return arg0.getMag().compareTo(arg1.getMag());
+		}
+	};
+			//Date
+			public static Comparator<EarthQuake> DateComparator = new Comparator<EarthQuake>() {
+			// Compares To Methods
+			public int compare(EarthQuake arg0, EarthQuake arg1) {
+				return arg0.getTime().compareTo(arg1.getTime());
+		}
+	};
+			public static Comparator<EarthQuake> PlaceComparator = new Comparator<EarthQuake>() {
+			// Compares To Methods
+			public int compare(EarthQuake arg0, EarthQuake arg1) {
+				return arg0.getPlace().compareTo(arg1.getPlace());
+		}
+	};
+			public static Comparator<EarthQuake> StatusComparator = new Comparator<EarthQuake>() {
+			// Compares To Methods
+			public int compare(EarthQuake arg0, EarthQuake arg1) {
+				return arg0.getStatus().compareTo(arg1.getStatus());
+		}
+	};
 }
+
 	
 
 
