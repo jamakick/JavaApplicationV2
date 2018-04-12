@@ -18,7 +18,24 @@ public class Main extends Application {
 	private static ArrayList<EarthQuake> earthArray = new ArrayList<>();
 	@Override
 	public void start(Stage primaryStage) {
+		
+		try {
+			// set a title for the Window
+			primaryStage.setTitle("Earthquake Window");
 
+			// get an FXML loader and read in the fxml code
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("/EarthquakeData.fxml"));
+			AnchorPane mainLayout = (AnchorPane)loader.load();
+
+			// Create the scene with the layout in the fxml code, set the scene and show it
+			Scene scene = new Scene(mainLayout);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 
 
 		//Read in data from csv file
@@ -55,8 +72,6 @@ public class Main extends Application {
 						theThing[19], 
 						theThing[20], 
 						theThing[21]));
-
-
 			}
 		}
 		catch ( Exception ex )  {
@@ -290,32 +305,15 @@ public class Main extends Application {
 			}
 		}
 
-		try {
-			// set a title for the Window
-			primaryStage.setTitle("Earthquake Window");
-
-			// get an FXML loader and read in the fxml code
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("/EarthquakeData.fxml"));
-			AnchorPane mainLayout = (AnchorPane)loader.load();
-
-			// Create the scene with the layout in the fxml code, set the scene and show it
-			Scene scene = new Scene(mainLayout);
-			primaryStage.setScene(scene);
-			primaryStage.show();
-
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		
 
 
 	}
 
 
-public static void main(String[] args) {
-	launch(args);
+	public static void main(String[] args) {
+		launch(args);
 
-
-}
+	}
 
 }
