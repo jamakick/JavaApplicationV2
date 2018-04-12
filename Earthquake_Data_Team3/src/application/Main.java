@@ -80,7 +80,7 @@ public class Main extends Application {
 		command = c_input.next();
 		switch (command.toLowerCase()) {
 		//explains what each command does, and explains how to run it. 
-		case "help": System.out.println("Sumarry Button: print out a summary of all of the data (# of events, timerange of the events,etc) Type summary to invoke." + "\n" + 
+		case "help": System.out.println("Summary Button: print out a summary of all of the data (# of events, timerange of the events,etc) Type summary to invoke." + "\n" + 
 				"Print Button: Prints out all the earthquake events. Type print to invoke." + "\n" + "Print By Button: Print out all the Earthquake events, sorted by some field (date, depth, mag, place, status) Click on button, then set field to sort by."
 				+ "\n" + "Search Button: Print out all of the earthquake events that meet some criteria (date, location, depth, mag, magType, place, status). Type search, then set field to search." 
 				+ "\n" + "Help Button: Prints out the description of buttons and how to invoke them. Type help to invoke."+ "\n" + "Type 'quit' to break the command line."); break; 
@@ -191,93 +191,23 @@ public class Main extends Application {
 			
 		//searches for the specified field and prints it out.
 			
-		case "search": System.out.print("What field do you want to search for?: ");
+		case "search": System.out.print("What field do you want to search for, and what arguments would you like to give?: ");
 		String searchField = c_input.next();
 		switch (searchField.toLowerCase()) {
+		
 		case "time": for (int i = 0; i < (int)arrayLength; i++) {
 			System.out.println(earthArray.get(i).getTime());}
 			
 		break;
-		case "latitude": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getLat());}
-			
-		break;
-		case "longitude": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getLong());}
-			
-		break;
-		case "locationsource": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getLocSource());}
-			
-		break;
-		case "net": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getNet());}
-			
-		break;
-		case "id": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getID());}
-			
-		break;
-		case "updated": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getUpdate());}
-			
-		break;
-		case "mag": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getMag());}
-			
-		break;
-		case "magtype": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getMagType());}
-			
-		break;
-		case "magnst": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getMagNet());}
-			
-		break;
-		case "magerror": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getMagError());}
-			
-		break;
-		case "magsource": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getMagSource());}
-			
-		break;
-		case "depth": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getDepth());}
-			
-		break;
-		case "deptherror": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getDepthError());}
-			
-		break;
-		case "nst": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getNst());} break;
-		case "rms": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getRms());}
-			
-		break;
-		case "place": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getPlace());}
-			
-		break;
-		case "gap": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getGap());}
-			
-		break;
-		case "dmin": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getDmin());}
-			
-		break;
-		case "type": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getType());}
-			
-		break;
-		case "horizontal": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getHorizontal());}
-			
-		break;
-		case "status": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getStatus());}
+		
+		case "status": 
+			String status = c_input.next();
+			for (int i = 0; i < (int)arrayLength; i++) {
+			String quakePlace = earthArray.get(i).getStatus();
+			//checks if the earthquakes status matches the argument
+			if(quakePlace.equals(status)) {
+			System.out.println(earthArray.get(i));}
+		}
 			
 		break;
 		
