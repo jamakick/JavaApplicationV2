@@ -14,7 +14,7 @@ import javafx.scene.control.TextArea;
 
 import javafx.scene.control.ChoiceBox;
 
-public class mainWindowController {
+public class MainController {
 	@FXML
 	private Button help;
 	@FXML
