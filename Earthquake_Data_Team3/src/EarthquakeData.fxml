@@ -14,24 +14,29 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="576.0" prefWidth="912.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+<AnchorPane prefHeight="800.0" prefWidth="1196.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <children>
-      <Rectangle fill="#5e594e" height="119.0" layoutX="-1.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="913.0" />
-      <Button fx:id="help" layoutX="38.0" layoutY="36.0" mnemonicParsing="false" onAction="#helpAction" prefHeight="53.0" prefWidth="112.0" text="Need help?" />
-      <Button fx:id="dataSummary" layoutX="102.0" layoutY="203.0" mnemonicParsing="false" onAction="#dataSummaryAction" prefHeight="53.0" prefWidth="313.0" text="Data Summary" />
-      <TextArea fx:id="output" layoutX="492.0" layoutY="134.0" prefHeight="427.0" prefWidth="332.0" wrapText="true" />
-      <Button fx:id="allEvents" layoutX="100.0" layoutY="290.0" mnemonicParsing="false" onAction="#allEventsAction" prefHeight="53.0" prefWidth="314.0" text="All events" />
-      <Button fx:id="Search" layoutX="100.0" layoutY="390.0" mnemonicParsing="false" onAction="#searchByAction" prefHeight="143.0" prefWidth="96.0" text="Search by" />
-      <Label layoutX="327.0" layoutY="30.0" text="Searchquake™" textFill="WHITE">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b9af87" height="199.0" layoutX="72.0" layoutY="152.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="368.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#796b52" height="199.0" layoutX="72.0" layoutY="549.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="368.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a89673" height="199.0" layoutX="72.0" layoutY="350.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="368.0" />
+      <Rectangle fill="#5e594e" height="115.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="1196.0" />
+      <Button fx:id="help" layoutX="103.0" layoutY="31.0" mnemonicParsing="false" onAction="#helpAction" prefHeight="53.0" prefWidth="112.0" text="Need help?" />
+      <Button fx:id="dataSummary" layoutX="102.0" layoutY="174.0" mnemonicParsing="false" onAction="#dataSummaryAction" prefHeight="53.0" prefWidth="313.0" text="Data Summary" />
+      <TextArea fx:id="output" layoutX="475.0" layoutY="149.0" prefHeight="235.0" prefWidth="674.0" wrapText="true" />
+      <Button fx:id="allEvents" layoutX="100.0" layoutY="268.0" mnemonicParsing="false" onAction="#allEventsAction" prefHeight="53.0" prefWidth="314.0" text="All events" />
+      <Button fx:id="Search" layoutX="100.0" layoutY="386.0" mnemonicParsing="false" onAction="#searchByAction" prefHeight="143.0" prefWidth="96.0" text="Search by" />
+      <Label layoutX="449.0" layoutY="26.0" text="Searchquake™" textFill="WHITE">
          <font>
             <Font name="Helvetica" size="50.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="searchDrop" layoutX="226.0" layoutY="411.0" prefHeight="27.0" prefWidth="187.0" />
-      <TextField fx:id="searchText" layoutX="225.0" layoutY="460.0" prefHeight="27.0" prefWidth="193.0" />
-      <Label layoutX="226.0" layoutY="441.0" prefHeight="17.0" prefWidth="62.0" text="Criteria 1" />
-      <TextField fx:id="searchText2" layoutX="226.0" layoutY="509.0" prefHeight="27.0" prefWidth="193.0" />
-      <Label layoutX="227.0" layoutY="491.0" prefHeight="17.0" prefWidth="62.0" text="Criteria 2" />
-      <Label layoutX="226.0" layoutY="390.0" prefHeight="17.0" prefWidth="62.0" text="Select a " />
+      <ChoiceBox fx:id="searchDrop" layoutX="226.0" layoutY="403.0" prefHeight="27.0" prefWidth="187.0" />
+      <TextField fx:id="searchText" layoutX="225.0" layoutY="452.0" prefHeight="27.0" prefWidth="193.0" />
+      <Label layoutX="226.0" layoutY="433.0" prefHeight="17.0" prefWidth="62.0" text="Criteria 1" />
+      <TextField fx:id="searchText2" layoutX="226.0" layoutY="501.0" prefHeight="27.0" prefWidth="193.0" />
+      <Label layoutX="227.0" layoutY="483.0" prefHeight="17.0" prefWidth="62.0" text="Criteria 2" />
+      <Label layoutX="226.0" layoutY="382.0" prefHeight="17.0" prefWidth="62.0" text="Select a " />
+      <Button fx:id="selectionOut" layoutX="101.0" layoutY="582.0" mnemonicParsing="false" onAction="#selectionOutAction" prefHeight="53.0" prefWidth="314.0" text="Convert selection to text file" />
+      <Button fx:id="allOut" layoutX="102.0" layoutY="670.0" mnemonicParsing="false" onAction="#allOutAction" prefHeight="53.0" prefWidth="314.0" text="Convert entire set to text file" />
    </children>
 </AnchorPane>
