@@ -195,19 +195,118 @@ public class Main extends Application {
 		String searchField = c_input.next();
 		switch (searchField.toLowerCase()) {
 		
-		case "time": for (int i = 0; i < (int)arrayLength; i++) {
-			System.out.println(earthArray.get(i).getTime());}
+		case "place": 
+			String blank = c_input.next();
+			String place = c_input.nextLine();
+			place = blank + place;
+			for (int i = 0; i < (int)arrayLength; i++) {
+				String quakePlace = earthArray.get(i).getPlace();
+				if(quakePlace.equals(place)) {
+					System.out.println(earthArray.get(i));}
+			}
 			
 		break;
 		
 		case "status": 
 			String status = c_input.next();
 			for (int i = 0; i < (int)arrayLength; i++) {
-			String quakePlace = earthArray.get(i).getStatus();
+				String quakeStatus = earthArray.get(i).getStatus();
 			//checks if the earthquakes status matches the argument
-			if(quakePlace.equals(status)) {
-			System.out.println(earthArray.get(i));}
+				if(quakeStatus.equals(status)) {
+					System.out.println(earthArray.get(i));}
 		}
+			
+		break;
+		
+		case "magtype":
+			String magType = c_input.next();
+			for (int i = 0; i < (int)arrayLength; i++) {
+				String quakeMagType = earthArray.get(i).getMagType();
+				if(quakeMagType.equals(magType)) {
+					System.out.println(earthArray.get(i));}
+				}
+			
+		break;
+			
+		case "magnitude":
+			String magnitude1 = c_input.next();
+			String magnitude2 = c_input.next();
+			
+			double magNum1 = -1000f;
+			double magNum2 = -1000f;
+			
+			try {
+				magNum1 = Double.parseDouble(magnitude1);
+				magNum2 = Double.parseDouble(magnitude2);
+			} catch(Exception e) {
+				System.out.println("Those are not valid magnitudes");
+			}
+			
+			for (int i = 0; i < (int)arrayLength; i++) {
+				System.out.println(earthArray.get(i));
+				double quakeMag = Double.parseDouble(earthArray.get(i).getMag());
+				if(quakeMag >= magNum1 && quakeMag <= magNum2) {
+					System.out.println(earthArray.get(i));}
+				}
+			
+		break;
+		
+		case "depth":
+			String depth1 = c_input.next();
+			String depth2 = c_input.next();
+			
+			double depthNum1 = -1000f;
+			double depthNum2 = -1000f;
+			
+			try {
+				depthNum1 = Double.parseDouble(depth1);
+				depthNum2 = Double.parseDouble(depth2);
+			} catch(Exception e) {
+				System.out.println("Those are not valid depths");
+			}
+			
+			for (int i = 0; i < (int)arrayLength; i++) {
+				double quakeDepth = Double.parseDouble(earthArray.get(i).getDepth());
+				if(quakeDepth >= depthNum1 && quakeDepth <= depthNum1) {
+					System.out.println(earthArray.get(i));}
+				}
+			
+		break;
+		
+		case "location":
+			String lat1 = c_input.next();
+			String long1 = c_input.next();
+			String lat2 = c_input.next();
+			String long2 = c_input.next();
+			
+			double latNum1 = 0f;
+			double longNum1 = 0f;
+			double latNum2 = 0f;
+			double longNum2 = 0f;
+			
+			try {
+				latNum1 = Double.parseDouble(lat1);
+				longNum1 = Double.parseDouble(long1);
+				latNum2 = Double.parseDouble(lat2);
+				longNum2 = Double.parseDouble(long2);
+			} catch(Exception e) {
+				System.out.println("Those are not valid coordinates");
+			}
+			
+			for (int i = 0; i < (int)arrayLength; i++) {
+				
+				double quakeLat = Double.parseDouble(earthArray.get(i).getLat());
+				double quakeLong = Double.parseDouble(earthArray.get(i).getLong());
+				
+				//nested if statement
+				//first we check if our earthquakes lat is in between our two latitude args
+				if(quakeLat >= latNum1 && quakeLat <= latNum2) {
+					//we then also check if the earthquake long is in between our two longitude args
+					if(quakeLong >= longNum1 && quakeLong <= longNum2) {
+						//if both of these are true, we add it to our list
+						System.out.println(earthArray.get(i));}
+				}
+			}
 			
 		break;
 		
@@ -220,32 +319,7 @@ public class Main extends Application {
 		
 		
 	}
-	
-		
-		
-		/*
-		System.out.print("Im so good at this. BOOM");
-		try {
-			// set a title for the Window
-			primaryStage.setTitle("Earthquake Window");
-			
-			// get an FXML loader and read in the fxml code
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("/EarthquakeData.fxml"));
-			AnchorPane mainLayout = (AnchorPane)loader.load();
-			
-			// Create the scene with the layout in the fxml code, set the scene and show it
-			Scene scene = new Scene(mainLayout);
-			primaryStage.setScene(scene);
-			primaryStage.show();
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}*/
-	
-	
-	
+
 	public static void main(String[] args) {
 		launch(args);
 		
