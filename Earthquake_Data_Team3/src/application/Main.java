@@ -23,6 +23,7 @@ public class Main extends Application {
 			// Create the scene with the layout in the fxml code, set the scene and show it
 			Scene scene = new Scene(mainLayout);
 			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
 			primaryStage.show();
 
 		} catch(Exception e) {

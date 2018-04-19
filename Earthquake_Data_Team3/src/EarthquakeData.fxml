@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.lynden.gmapsfx.GoogleMapView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1196.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+<AnchorPane prefHeight="800.0" prefWidth="1196.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b9af87" height="199.0" layoutX="72.0" layoutY="152.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="368.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#796b52" height="199.0" layoutX="72.0" layoutY="549.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="368.0" />
@@ -33,5 +34,6 @@
       <Label layoutX="226.0" layoutY="382.0" prefHeight="17.0" prefWidth="62.0" text="Select a " />
       <Button fx:id="selectionOut" layoutX="101.0" layoutY="582.0" mnemonicParsing="false" onAction="#selectionOutAction" prefHeight="53.0" prefWidth="314.0" text="Convert selection to text file" />
       <Button fx:id="allOut" layoutX="102.0" layoutY="670.0" mnemonicParsing="false" onAction="#allOutAction" prefHeight="53.0" prefWidth="314.0" text="Convert entire set to text file" />
+      <GoogleMapView fx:id="mapView" layoutX="475.0" layoutY="399.0" onDragDetected="#mapViewAction" prefHeight="342.0" prefWidth="674.0" />
    </children>
 </AnchorPane>
