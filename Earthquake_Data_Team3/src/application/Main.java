@@ -17,12 +17,35 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Main extends Application {
-	private static ArrayList<EarthQuake> earthArray = new ArrayList<>();
-	@Override
-	public void start(Stage primaryStage) {
-		
 	
-
+	public static ArrayList<EarthQuake> getFileInformation() {
+		
+		ArrayList<EarthQuake> earthArray = new ArrayList<>();
+		
+		//define our variables for the earthquake object
+		String time;
+		String latitude;
+		String longitude;
+		String depth;
+		String mag;
+		String magType;
+		String nst;
+		String gap;
+		String dMin;
+		String rms;
+		String net;
+		String id;
+		String updated;
+		String place;
+		String type;
+		String horError;
+		String depthError;
+		String magError;
+		String magNst;
+		String status;
+		String locSource;
+		String magSource;
+		
 		//Read in data from csv file
 		java.io.File theFile = new java.io.File("all_month1.csv");
 		try (Scanner input = new Scanner(theFile)) {
@@ -31,41 +54,139 @@ public class Main extends Application {
 			
 			//takes the data from the file and makes it an array line by line.
 			while (input.hasNextLine()) {
-				String[] theThing = input.nextLine().split(",");
-				//inputs each field into the array.
-				earthArray.add(new EarthQuake(theThing[0],
-						theThing[1],
-						theThing[2], 
-						theThing[3], 
-						theThing[4], 
-						theThing[5], 
-						theThing[6],
-						theThing[7],
-						theThing[8], 
-						theThing[9], 
-						theThing[10], 
-						theThing[11], 
-						theThing[12], 
-						theThing[13], 
-						theThing[14], 
-						theThing[15], 
-						theThing[16], 
-						theThing[17], 
-						theThing[18],
-						theThing[19], 
-						theThing[20], 
-						theThing[21]));
+				String[] theThing = input.nextLine().split(",");;
 				
-			    
+				//2018-02-27T14:40:10.010Z
+        		if (theThing[0].equals(""))
+        			time = "No time given";
+        		else
+        			time = theThing[0];
+        		//38.7888333
+        		if (theThing[1].equals(""))
+        			latitude = "0";
+        		else
+        			latitude = theThing[1];
+        		//-122.8001667
+        		if (theThing[2].equals(""))
+        			longitude = "0";
+        		else
+        			longitude = theThing[2];
+        		//4.22
+        		if (theThing[3].equals(""))
+        			depth = "0";
+        		else
+        			depth = theThing[3];
+        		//0.3
+        		if (theThing[4].equals(""))
+        			mag = "0";
+        		else
+        			mag = theThing[4];
+        		//md
+        		if (theThing[5].equals(""))
+        			magType = "null";
+        		else
+        			magType = theThing[5];
+        		//22	
+        		if (theThing[6].equals(""))
+        			nst = "0";
+        		else
+        			nst = theThing[6];
+        		//132.0
+        		if (theThing[7].equals(""))
+        			gap = "0";
+        		else
+        			gap = theThing[7];
+        		//0.01173
+        		if (theThing[8].equals(""))
+        			dMin = "0";
+        		else
+        			dMin = theThing[8];
+        		//.02
+        		if (theThing[9].equals(""))
+        			rms = "0";
+        		else
+        			rms = theThing[9];
+        		//nc
+        		if (theThing[10].equals(""))
+        			net = "null";
+        		else
+        			net = theThing[10];
+        		//nc72991180
+        		if (theThing[11].equals(""))
+        			id = "null";
+        		else
+        			id = theThing[11];
+        		//2018-03-29T14:31:02.753Z
+        		if (theThing[12].equals(""))
+        			updated = "null";
+        		else
+        			updated = theThing[12];
+        		//"4km WNW of The Geysers, CA"
+        		if (theThing[13].equals(""))
+        			place = "null";
+        		else
+        			place = theThing[13];
+        		//earthquake
+        		if (theThing[14].equals(""))
+        			type = "null";
+        		else
+        			type = theThing[14];
+        		//0.26
+        		if (theThing[15].equals(""))
+        			horError = "0";
+        		else
+        			horError = theThing[15];
+        		//0.52
+        		if (theThing[16].equals(""))
+        			depthError = "0";
+        		else
+        			depthError = theThing[16];
+        		//0.15
+        		if (theThing[17].equals(""))
+        			magError = "0";
+        		else
+        			magError = theThing[17];
+        		//3
+        		if (theThing[18].equals(""))
+        			magNst = "0";
+        		else
+        			magNst = theThing[18];
+        		//automatic
+        		if (theThing[19].equals(""))
+        			status = "null";
+        		else
+        			status = theThing[19];
+        		//nc
+        		if (theThing[20].equals(""))
+        			locSource = "null";
+        		else
+        			locSource = theThing[20];
+        		//nc
+        		if (theThing[21].equals(""))
+        			magSource = "null";
+        		else
+        			magSource = theThing[21];
+        		
+        		//once we have all the variables, with defaults for those that were null
+        	    
+        		//create an earthquake with all the variable
+        		EarthQuake quake = new EarthQuake(time, latitude, longitude, depth,  mag, magType,
+        				nst, gap, dMin, rms, net, id, updated, place,
+        				type, horError, depthError, magError, 
+        				magNst, status, locSource, magSource);
+        		earthArray.add(quake);
 			}
 				}
 		catch ( Exception ex )  {
 			System.out.println("File could not be opened or data did not match." + ex);
 		}
-		//Asks for a command to run
-		String command = "";
-		int arrayLength = earthArray.size();
-		Scanner c_input = new Scanner(System.in);
+		
+		return earthArray;
+		
+	}
+	
+	public static String arrayListToString(ArrayList<EarthQuake> earthArray) {
+		
 		double totalM= 0.0;
 		double avgM = 0.0;
 		double avgD = 0.0;
@@ -76,18 +197,10 @@ public class Main extends Application {
 		double totalN= 0.0;
 		double avgR = 0.0;
 		double totalR= 0.0;
+		double arrayLength= earthArray.size();
 		double arrayLengthD = arrayLength;
-		while (!command.equals("quit")) {
-		System.out.println("Please enter a command: ");
-		command = c_input.next();
-		switch (command.toLowerCase()) {
-		//explains what each command does, and explains how to run it. 
-		case "help": System.out.println("Summary Button: print out a summary of all of the data (# of events, timerange of the events,etc) Type summary to invoke." + "\n" + 
-				"Print Button: Prints out all the earthquake events. Type print to invoke." + "\n" + "Print By Button: Print out all the Earthquake events, sorted by some field (date, depth, mag, place, status) Click on button, then set field to sort by."
-				+ "\n" + "Search Button: Print out all of the earthquake events that meet some criteria (date, location, depth, mag, magType, place, status). Type search, then set field to search." 
-				+ "\n" + "Help Button: Prints out the description of buttons and how to invoke them. Type help to invoke."+ "\n" + "Type 'quit' to break the command line."); break; 
-		//prints the number of earthquake events, timerange etc.
-		case "summary": for (int i = 0; i < (int)arrayLength; i++) {
+		
+		for (int i = 0; i < (int)arrayLength; i++) {
 			String sValue = earthArray.get(i).getMag();
 			if (sValue.equals("")) {
 				
@@ -142,10 +255,37 @@ public class Main extends Application {
 			
 			avgR = totalR /arrayLengthD;
 			}
-			System.out.println("# of Earthquake events: " + arrayLength + "\n" + "Timerange: " + 
+			return "# of Earthquake events: " + arrayLength + "\n" + "Timerange: " + 
 			earthArray.get(0).getTime() + " and " + earthArray.get(9905).getTime() + "\n" + "Average Magnitude: " + avgM + "\n"
-			+ "Average Depth: " + avgD + "\n" + "Average Gap: " + avgG + "\n" + "Average Nst: " + avgN + "\n" + "Average RMS: "+ avgR);
+			+ "Average Depth: " + avgD + "\n" + "Average Gap: " + avgG + "\n" + "Average Nst: " + avgN + "\n" + "Average RMS: "+ avgR;
 		
+		
+	}
+	
+	
+	@Override
+	public void start(Stage primaryStage) {
+		
+		ArrayList<EarthQuake> earthArray = getFileInformation();
+
+		//Asks for a command to run
+		String command = "";
+		int arrayLength = earthArray.size();
+		Scanner c_input = new Scanner(System.in);
+
+		while (!command.equals("quit")) {
+		System.out.println("Please enter a command: ");
+		command = c_input.next();
+		
+		switch (command.toLowerCase()) {
+		//explains what each command does, and explains how to run it. 
+		case "help": System.out.println("Summary Button: print out a summary of all of the data (# of events, timerange of the events,etc) Type summary to invoke." + "\n" + 
+				"Print Button: Prints out all the earthquake events. Type print to invoke." + "\n" + "Print By Button: Print out all the Earthquake events, sorted by some field (date, depth, mag, place, status) Click on button, then set field to sort by."
+				+ "\n" + "Search Button: Print out all of the earthquake events that meet some criteria (date, location, depth, mag, magType, place, status). Type search, then set field to search." 
+				+ "\n" + "Help Button: Prints out the description of buttons and how to invoke them. Type help to invoke."+ "\n" + "Type 'quit' to break the command line."); break; 
+		//prints the number of earthquake events, timerange etc.
+		case "summary":
+			System.out.println(arrayListToString(earthArray));
     		  break;
 		//displays the earthquake events line by line
 		case "print": for (int i = 0; i < (int)arrayLength; i++) {
@@ -365,11 +505,4 @@ public class Main extends Application {
 		
 		
 	}
-
-	public static void main(String[] args) {
-		launch(args);
-		
-		
-	}
-	
 }
