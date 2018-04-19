@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;  
 import java.util.Date;  
 import java.util.Scanner;
@@ -310,10 +312,54 @@ public class Main extends Application {
 			
 		break;
 		
-		}
-		break;
+		case "date":
+			String string1 = c_input.next();
+			String string2 = c_input.next();
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			
+			//define our two dates
+			Date date1 = new Date();
+			Date date2 = new Date();
+			
+			//parse our dates
+			try {
+				date1 = sdf.parse(string1 + " 00:00:00");
+				date2 = sdf.parse(string2 + " 00:00:00");
+			} catch (ParseException e) {
+				//if our dates are incorrect, we tell them they aren't valid dates
+				System.out.println("Those are not valid dates");
+			}
+			
+			//loop earthquakes
+			for (int i = 0; i < (int)arrayLength; i++) {
+				//get the substring of our Time from earthquake, this matches our simpledateformat
+				String dateString = earthArray.get(i).getTime().substring(0, 10);
+				String timeString = earthArray.get(i).getTime().substring(11, 19);
+				
+				//define our earthquake date
+				Date timeDate = new Date();
+				
+				//parse our earthquake date
+				try {
+					timeDate = sdf.parse(dateString + " " + timeString);
+				} catch (ParseException e) {
+					//if we get an error here, we print the stacktrace
+					e.printStackTrace();
+				}
+				//we check to see if the earthquakes date is after the first date, but before the second date
+				if (timeDate.after(date1) && timeDate.before(date2)) {
+					//if it is, we add it to our list
+					System.out.println(earthArray.get(i));
+				}
+			}
+			
+			
+			
+			
 		case "quit": System.out.print(" "); break;
 		default: System.out.print("That's not a valid command."); break;
+		}
 		}
 		}
 		
