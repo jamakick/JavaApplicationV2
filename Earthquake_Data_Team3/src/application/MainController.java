@@ -1,18 +1,13 @@
 package application;
 
 import javafx.fxml.FXML;
-
 import javafx.scene.control.Button;
-
 import javafx.scene.control.TextField;
-
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
-
 import javafx.scene.control.TextArea;
-
 import javafx.scene.control.ChoiceBox;
+
 
 public class MainController {
 	@FXML
