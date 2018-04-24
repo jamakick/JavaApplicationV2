@@ -82,7 +82,7 @@ public class EarthQuake {
 		
 		return "Earthquake Location: " + locationSource +"\n" + "Preferred data source: "+net+"\n" + "EarthQuake ID:" + id + "\n" + "EarthQuakeUpdate: " + updated + "\n" + "Magnitude: "+ mag + "\n" + "Magnitude Type: " + magType + "\n" +"Network reporting Magntitude: "+ magNst + "\n" + "Uncertainty of reported mangitude: " 
 	+ magError + "\n" + "Latitude: " + latitude + "\n" + "Longitude: " + longitude + "\n" + "Depth: " + depth + "\n" + "Seismic Stations required: "+ nst + "\n" + "Largest azimuthal gap between stations: "+ gap + "\n" + "Distance to nearest Station: " +
-	dMin +"\n" + "Root mean Square(travel time in seconds): " + rms + "\n" + "Location nearest Event: " + place + "\n" + "Type of Seismic event: "+ type + "\n"+ "Review Status: " + status +"\n" + "Uncertainty of Location in km: " + horizontal + "\n" + "Uncertainty of reported depth in km: " + depthError + "\n" + "Magnitude Source: " + magSource;
+	dMin +"\n" + "Root mean Square(travel time in seconds): " + rms + "\n" + "Location nearest Event: " + place + "\n" + "Type of Seismic event: "+ type + "\n"+ "Review Status: " + status +"\n" + "Uncertainty of Location in km: " + horizontal + "\n" + "Uncertainty of reported depth in km: " + depthError + "\n" + "Magnitude Source: " + magSource + "\n";
 	}
 	//Getter methods
 	public String getTime() {
