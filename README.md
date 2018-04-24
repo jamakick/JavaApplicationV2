@@ -33,3 +33,7 @@ It uses the getter methods to print out the data from the inputted field and a s
 that's called. It then uses a for loop to print that field from all the events. The earthquake.java has the earthquake class set up. 
 These objects are created from the earthquake events and all the variables are all of the columns from the csv file. 
 They’re all string variables. The toString method prints out the name of the field and then the data associated with the field. 
+
+
+--Google API key--
+AIzaSyDVtNMqS6TNhJJcukQNXluH4T4sesUks2g
