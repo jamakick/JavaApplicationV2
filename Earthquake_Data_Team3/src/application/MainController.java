@@ -32,6 +32,7 @@ public class MainController {
 	private TextField searchText2;
 	
 	
+	
 	// Event Listener on Button[#help].onAction
 	@FXML
 	public void helpAction(ActionEvent event) {
