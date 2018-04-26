@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
@@ -17,24 +16,32 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a89673" height="199.0" layoutX="72.0" layoutY="350.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="368.0" />
       <Rectangle fill="#5e594e" height="115.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="1196.0" />
       <Button fx:id="help" layoutX="103.0" layoutY="31.0" mnemonicParsing="false" onAction="#helpAction" prefHeight="53.0" prefWidth="112.0" text="Need help?" />
-      <Button fx:id="dataSummary" layoutX="102.0" layoutY="174.0" mnemonicParsing="false" onAction="#dataSummaryAction" prefHeight="53.0" prefWidth="313.0" text="Data Summary" />
-      <TextArea fx:id="output" layoutX="475.0" layoutY="149.0" prefHeight="235.0" prefWidth="674.0" wrapText="true" />
-      <Button fx:id="allEvents" layoutX="100.0" layoutY="268.0" mnemonicParsing="false" onAction="#allEventsAction" prefHeight="53.0" prefWidth="314.0" text="All events" />
-      <Button fx:id="searchBy" layoutX="93.0" layoutY="379.0" mnemonicParsing="false" onAction="#searchByAction" prefHeight="64.0" prefWidth="112.0" text="Search by" />
+      <Button fx:id="search" layoutX="100.0" layoutY="384.0" mnemonicParsing="false" onAction="#searchAction" prefHeight="53.0" prefWidth="314.0" text="Search" />
       <Label layoutX="449.0" layoutY="26.0" text="Searchquake™" textFill="WHITE">
          <font>
             <Font name="Helvetica" size="50.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="searchDrop" layoutX="226.0" layoutY="398.0" prefHeight="27.0" prefWidth="187.0" />
-      <TextField fx:id="searchText" layoutX="225.0" layoutY="447.0" prefHeight="27.0" prefWidth="193.0" />
-      <Label layoutX="226.0" layoutY="428.0" prefHeight="17.0" prefWidth="62.0" text="Criteria 1" />
-      <TextField fx:id="searchText2" layoutX="226.0" layoutY="496.0" prefHeight="27.0" prefWidth="193.0" />
-      <Label layoutX="227.0" layoutY="478.0" prefHeight="17.0" prefWidth="62.0" text="Criteria 2" />
-      <Label layoutX="226.0" layoutY="377.0" prefHeight="17.0" prefWidth="62.0" text="Select a " />
+      <ChoiceBox fx:id="searchDrop" layoutX="203.0" layoutY="189.0" prefHeight="27.0" prefWidth="209.0" />
+      <TextField fx:id="max" layoutX="203.0" layoutY="289.0" prefHeight="27.0" prefWidth="210.0" />
+      <TextField fx:id="min" layoutX="203.0" layoutY="241.0" prefHeight="27.0" prefWidth="210.0" />
+      <Label layoutX="101.0" layoutY="186.0" prefHeight="32.0" prefWidth="88.0" text="Select ">
+         <font>
+            <Font size="22.0" />
+         </font></Label>
       <Button fx:id="selectionOut" layoutX="101.0" layoutY="582.0" mnemonicParsing="false" onAction="#selectionOutAction" prefHeight="53.0" prefWidth="314.0" text="Convert selection to text file" />
       <Button fx:id="allOut" layoutX="102.0" layoutY="670.0" mnemonicParsing="false" onAction="#allOutAction" prefHeight="53.0" prefWidth="314.0" text="Convert entire set to text file" />
-      <Button fx:id="printBy" layoutX="93.0" layoutY="460.0" mnemonicParsing="false" onAction="#printByAction" prefHeight="64.0" prefWidth="112.0" text="Print by" />
-      <GoogleMapView fx:id="mapView" layoutX="476.0" layoutY="406.0" prefHeight="342.0" prefWidth="674.0" />
+      <Button fx:id="reset" layoutX="100.0" layoutY="466.0" mnemonicParsing="false" onAction="#resetAction" prefHeight="53.0" prefWidth="314.0" text="Reset" />
+      <GoogleMapView fx:id="mapView" layoutX="476.0" layoutY="156.0" prefHeight="594.0" prefWidth="674.0" />
+      <Label layoutX="103.0" layoutY="238.0" prefHeight="32.0" prefWidth="88.0" text="Min">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="103.0" layoutY="285.0" prefHeight="32.0" prefWidth="88.0" text="Max">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
