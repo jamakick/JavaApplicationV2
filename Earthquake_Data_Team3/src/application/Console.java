@@ -2,19 +2,10 @@ package application;
 	
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Collections;
-
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;  
 import java.util.Date;  
-import java.util.Scanner;
 
 public class Console{
 	
@@ -234,6 +225,8 @@ public class Console{
 		java.io.File theFile = new java.io.File("all_month1.csv");
 		try (Scanner input = new Scanner(theFile)) {
 			//Read first line of headers
+			
+			@SuppressWarnings("unused")
 			String[] theHeader = input.nextLine().split(",");
 			
 			//takes the data from the file and makes it an array line by line.
@@ -445,7 +438,6 @@ public class Console{
 		
 		
 	}
-	
 	
 //	@Override
 //	public void start() {
