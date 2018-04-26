@@ -115,7 +115,7 @@ public class MainController implements Initializable, MapComponentInitializedLis
 	        InfoWindow quakeWindow = new InfoWindow(quakeWindowOptions);
 	        
 	        map.addUIEventHandler(quakeMarker, UIEventType.click, (JSObject obj) -> {
-	            quakeWindow.open(map);
+	            quakeWindow.open(map, quakeMarker);
 	        });
 	        
 			
