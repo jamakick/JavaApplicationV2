@@ -1,15 +1,28 @@
 package application;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import com.lynden.gmapsfx.GoogleMapView;
+import com.lynden.gmapsfx.MapComponentInitializedListener;
+import com.lynden.gmapsfx.javascript.object.GoogleMap;
+import com.lynden.gmapsfx.javascript.object.LatLong;
+import com.lynden.gmapsfx.javascript.object.MapOptions;
+import com.lynden.gmapsfx.javascript.object.MapTypeIdEnum;
+import com.lynden.gmapsfx.javascript.object.Marker;
+import com.lynden.gmapsfx.javascript.object.MarkerOptions;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ChoiceBox;
 
 
-public class MainController {
+public class MainController implements Initializable, MapComponentInitializedListener{
 	@FXML
 	private Button help;
 	@FXML
@@ -32,6 +45,10 @@ public class MainController {
 	private TextField searchText;
 	@FXML
 	private TextField searchText2;
+	@FXML
+	private GoogleMapView mapView;
+	
+	private GoogleMap map;
 	
 	
 	
@@ -76,8 +93,30 @@ public class MainController {
 		 output.setText("print by...");
 	}
 	
-	@FXML
-	public void initialize() {
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
 		output.setEditable(false);
+		mapView.addMapInializedListener(this);
+			
+	}
+	
+	@Override
+	public void mapInitialized() {
+		LatLong loc1 = new LatLong(39.1710061, -86.51679969999998);
+		
+		MapOptions mapOptions = new MapOptions();
+		
+		mapOptions.center(new LatLong(39.1710061, -86.51679969999998)).mapType(MapTypeIdEnum.TERRAIN).zoom(4);
+		
+		
+		map = mapView.createMap(mapOptions, false);
+		
+		MarkerOptions markerOptions1 = new MarkerOptions();
+        markerOptions1.position(loc1);
+        
+        Marker loc1Marker = new Marker(markerOptions1);
+  
+		map.addMarker(loc1Marker);
+        
 	}
 }
