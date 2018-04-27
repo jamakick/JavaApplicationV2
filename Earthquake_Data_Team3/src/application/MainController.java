@@ -1,12 +1,16 @@
 package application;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import netscape.javascript.JSObject;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -49,10 +53,10 @@ public class MainController implements Initializable, MapComponentInitializedLis
 	private GoogleMap map;
 	
 	private Stage helpWindowStage;
-	private helpWindowController helpController;
+	private HelpWindowController helpController;
 	
 	private Stage fileSaveWindowStage;
-	private fileSaveWindowController fileController;
+	private FileSaveWindowController fileController;
 	
 	
 	
@@ -104,16 +108,59 @@ public class MainController implements Initializable, MapComponentInitializedLis
 	// Event Listener on Button[#help].onAction
 	@FXML
 	public void helpAction(ActionEvent event) {
-		@SuppressWarnings("unused")
-		String outstring= "Summary Button: print out a summary of all of the data (# of events, timerange of the events,etc) Type summary to invoke." + "\n \n" + 
-				"Print Button: Prints out all the earthquake events. Type print to invoke." + "\n \n" + "Print By Button: Print out all the Earthquake events, sorted by some field (date, depth, mag, place, status) Click on button, then set field to sort by."
-				+ "\n \n" + "Search Button: Print out all of the earthquake events that meet some criteria (date, location, depth, magnitude, magType, place, status). Type search, then set field to search." 
-				+ "\n \n" + "Help Button: Prints out the description of buttons and how to invoke them. Type help to invoke."+ "\n \n" + "Type 'quit' to break the command line.";
+		
+		
+		//check is there is a window already
+		if (helpWindowStage == null) {
+			//if not, we create our window with this block of code
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/HelpWindow.fxml"));
+			AnchorPane helpWindowPane;
+			
+			try {
+				helpWindowPane = (AnchorPane)loader.load();
+				Scene helpWindowScene = new Scene(helpWindowPane);
+				helpWindowStage = new Stage();
+				helpWindowStage.setScene(helpWindowScene);
+				helpWindowStage.setTitle("Help Window");
+				helpController = (HelpWindowController)loader.getController();
+				}
+			
+			catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		helpController.setHelpText("This is help text!");
+		helpController.setController(this);
+		helpWindowStage.show();
 	}
 
 	
 	@FXML
 	public void allOutAction(ActionEvent event) {
+		
+		
+		
+		//check is there is a window already
+		if (fileSaveWindowStage == null) {
+			//if not, we create our window with this block of code
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/FileSaveWindow.fxml"));
+			AnchorPane fileSaveWindowPane;
+			
+			try {
+				fileSaveWindowPane = (AnchorPane)loader.load();
+				Scene fileSaveWindowScene = new Scene(fileSaveWindowPane);
+				fileSaveWindowStage = new Stage();
+				fileSaveWindowStage.setScene(fileSaveWindowScene);
+				fileSaveWindowStage.setTitle("File Save Window");
+				fileController = (FileSaveWindowController)loader.getController();
+				}
+			
+			catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		fileSaveWindowStage.show();
 	}
 	
 	@FXML
