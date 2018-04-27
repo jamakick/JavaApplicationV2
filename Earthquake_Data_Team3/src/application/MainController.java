@@ -47,7 +47,7 @@ public class MainController implements Initializable, MapComponentInitializedLis
 	
 	private GoogleMap map;
 	
-	private ArrayList<EarthQuake> currentSearchedQuakes = Console.getFileInformation();
+	private ArrayList<EarthQuake> currentSearchedQuakes;
 	
 	ArrayList<Marker> markers = new ArrayList<Marker>();
 	
@@ -64,7 +64,7 @@ public class MainController implements Initializable, MapComponentInitializedLis
 		
 		ArrayList<EarthQuake> earthquakes = currentSearchedQuakes;
 		
-		for(int i=0;i<750;i++) {
+		for(int i=0;i<earthquakes.size();i++) {
 			double latitude = Double.parseDouble(earthquakes.get(i).getLat());
 			double longitude = Double.parseDouble(earthquakes.get(i).getLong());
 			
@@ -124,9 +124,36 @@ public class MainController implements Initializable, MapComponentInitializedLis
 		switch (choice) {
 		
 		case "Date":
-			searchQuakes = Console.SearchByDate(minimum, maximum);
+			searchQuakes = Console.SearchByDate(minimum, maximum, currentSearchedQuakes);
 			break;
 		
+		case "Latitude":
+			searchQuakes = Console.SearchByLat(minimum, maximum, currentSearchedQuakes);
+			break;
+		
+		case "Longitude":
+			searchQuakes = Console.SearchByLong(minimum, maximum, currentSearchedQuakes);
+			break;
+			
+		case "Depth":
+			searchQuakes = Console.SearchByDepth(minimum, maximum, currentSearchedQuakes);
+			break;
+			
+		case "Magnitude":
+			searchQuakes = Console.SearchByMag(minimum, maximum, currentSearchedQuakes);
+			break;
+			
+		case "Status":
+			searchQuakes = Console.SearchByStatus(minimum, currentSearchedQuakes);
+			break;
+			
+		case "Place":
+			searchQuakes = Console.SearchByPlace(minimum, currentSearchedQuakes);
+			break;
+			
+		case "Magnitude Type":
+			searchQuakes = Console.SearchByMagType(minimum, currentSearchedQuakes);
+			break;
 		}
 		
 		currentQuakeList(searchQuakes);
@@ -138,8 +165,38 @@ public class MainController implements Initializable, MapComponentInitializedLis
 	public void resetAction(ActionEvent event) {
 		min.clear();
 		max.clear();
+		markers.clear();
 		searchDrop.getSelectionModel().select("Latitude");
-		mapInitialized();
+		
+		ArrayList<EarthQuake> earthquakes = Console.getFileInformation();
+		currentQuakeList(earthquakes);
+		
+		for(int i=0;i<earthquakes.size();i++) {
+			double latitude = Double.parseDouble(earthquakes.get(i).getLat());
+			double longitude = Double.parseDouble(earthquakes.get(i).getLong());
+			
+			LatLong quakeLoc= new LatLong(latitude, longitude);
+			
+			MarkerOptions quakeOptions = new MarkerOptions();
+			quakeOptions.position(quakeLoc);
+			
+			Marker quakeMarker = new Marker(quakeOptions);
+			
+			map.addMarker(quakeMarker);
+			
+			markers.add(quakeMarker);
+			
+			InfoWindowOptions quakeWindowOptions = new InfoWindowOptions();
+	        quakeWindowOptions.content(earthquakes.get(i).toString());
+
+	        InfoWindow quakeWindow = new InfoWindow(quakeWindowOptions);
+	        
+	        map.addUIEventHandler(quakeMarker, UIEventType.click, (JSObject obj) -> {
+	            quakeWindow.open(map, quakeMarker);
+	        });
+	        
+			
+		}
 	}
 	
 	@Override
@@ -147,6 +204,8 @@ public class MainController implements Initializable, MapComponentInitializedLis
 		
 		searchDrop.getItems().addAll("Latitude", "Longitude", "Depth", "Magnitude", "Date", "Status", "Place", "Magnitude Type");
 		searchDrop.getSelectionModel().select("Latitude");
+		
+		currentSearchedQuakes = Console.getFileInformation();
 		
 		mapView.addMapInializedListener(this);
 			
@@ -165,7 +224,7 @@ public class MainController implements Initializable, MapComponentInitializedLis
 		
 		ArrayList<EarthQuake> earthquakes = Console.getFileInformation();
 		
-		for(int i=0;i<750;i++) {
+		for(int i=0;i<earthquakes.size();i++) {
 			double latitude = Double.parseDouble(earthquakes.get(i).getLat());
 			double longitude = Double.parseDouble(earthquakes.get(i).getLong());
 			

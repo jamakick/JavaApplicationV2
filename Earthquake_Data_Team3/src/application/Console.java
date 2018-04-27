@@ -9,9 +9,9 @@ import java.util.Date;
 
 public class Console{
 	
-	public static ArrayList<EarthQuake> SearchByPlace(String place) {
+	public static ArrayList<EarthQuake> SearchByPlace(String place, ArrayList<EarthQuake> earthquakes) {
 		
-		ArrayList<EarthQuake> earthquakes = getFileInformation();
+		//ArrayList<EarthQuake> earthquakes = getFileInformation();
 		
 		ArrayList<EarthQuake> placeMatch = new ArrayList<EarthQuake>();
 		
@@ -24,14 +24,14 @@ public class Console{
 		return placeMatch;
 	}
 	
-	public static ArrayList<EarthQuake> SearchByStatus(String status) {
+	public static ArrayList<EarthQuake> SearchByStatus(String status, ArrayList<EarthQuake> earthquakes) {
 		
-		ArrayList<EarthQuake> earthquakes = getFileInformation();
+		//ArrayList<EarthQuake> earthquakes = getFileInformation();
 		
 		ArrayList<EarthQuake> statusMatch = new ArrayList<EarthQuake>();
 		
 		for (int i = 0; i < earthquakes.size(); i++) {
-			String quakePlace = earthquakes.get(i).getPlace();
+			String quakePlace = earthquakes.get(i).getStatus();
 			if(quakePlace.equals(status)) {
 				statusMatch.add(earthquakes.get(i));}
 		}
@@ -39,14 +39,14 @@ public class Console{
 		return statusMatch;
 	}
 	
-	public static ArrayList<EarthQuake> SearchByMagType(String magType) {
+	public static ArrayList<EarthQuake> SearchByMagType(String magType, ArrayList<EarthQuake> earthquakes) {
 		
-		ArrayList<EarthQuake> earthquakes = getFileInformation();
+		//ArrayList<EarthQuake> earthquakes = getFileInformation();
 		
 		ArrayList<EarthQuake> magTypeMatch = new ArrayList<EarthQuake>();
 		
 		for (int i = 0; i < earthquakes.size(); i++) {
-			String quakePlace = earthquakes.get(i).getPlace();
+			String quakePlace = earthquakes.get(i).getMagType();
 			if(quakePlace.equals(magType)) {
 				magTypeMatch.add(earthquakes.get(i));}
 		}
@@ -54,9 +54,9 @@ public class Console{
 		return magTypeMatch;
 	}
 	
-	public static ArrayList<EarthQuake> SearchByMag(String mag1, String mag2) {
+	public static ArrayList<EarthQuake> SearchByMag(String mag1, String mag2, ArrayList<EarthQuake> earthquakes) {
 		
-		ArrayList<EarthQuake> earthquakes = getFileInformation();
+		//ArrayList<EarthQuake> earthquakes = getFileInformation();
 		
 		ArrayList<EarthQuake> magBetween = new ArrayList<EarthQuake>();
 		
@@ -71,7 +71,6 @@ public class Console{
 		}
 		
 		for (int i = 0; i < earthquakes.size(); i++) {
-			System.out.println(earthquakes.get(i));
 			double quakeMag = Double.parseDouble(earthquakes.get(i).getMag());
 			if(quakeMag >= magNum1 && quakeMag <= magNum2) {
 				magBetween.add(earthquakes.get(i));}
@@ -80,9 +79,9 @@ public class Console{
 		return magBetween;
 	}
 	
-	public static ArrayList<EarthQuake> SearchByDepth(String depth1, String depth2) {
+	public static ArrayList<EarthQuake> SearchByDepth(String depth1, String depth2, ArrayList<EarthQuake> earthquakes) {
 		
-		ArrayList<EarthQuake> earthquakes = getFileInformation();
+		//ArrayList<EarthQuake> earthquakes = getFileInformation();
 		
 		ArrayList<EarthQuake> depthBetween = new ArrayList<EarthQuake>();
 		
@@ -97,8 +96,7 @@ public class Console{
 		}
 		
 		for (int i = 0; i < earthquakes.size(); i++) {
-			System.out.println(earthquakes.get(i));
-			double quakeMag = Double.parseDouble(earthquakes.get(i).getMag());
+			double quakeMag = Double.parseDouble(earthquakes.get(i).getDepth());
 			if(quakeMag >= depthNum1 && quakeMag <= depthNum2) {
 				depthBetween.add(earthquakes.get(i));}
 			}
@@ -106,9 +104,9 @@ public class Console{
 		return depthBetween;
 	}
 	
-	public static ArrayList<EarthQuake> SearchByLoc(String lat1, String long1, String lat2, String long2) {
+	public static ArrayList<EarthQuake> SearchByLoc(String lat1, String long1, String lat2, String long2, ArrayList<EarthQuake> earthquakes) {
 		
-		ArrayList<EarthQuake> earthquakes = getFileInformation();
+		//ArrayList<EarthQuake> earthquakes = getFileInformation();
 		
 		ArrayList<EarthQuake> locBetween = new ArrayList<EarthQuake>();
 		
@@ -144,9 +142,9 @@ public class Console{
 		return locBetween;
 	}
 	
-	public static ArrayList<EarthQuake> SearchByLat(String lat1, String lat2) {
+	public static ArrayList<EarthQuake> SearchByLat(String lat1, String lat2, ArrayList<EarthQuake> earthquakes) {
 		
-		ArrayList<EarthQuake> earthquakes = getFileInformation();
+		//ArrayList<EarthQuake> earthquakes = getFileInformation();
 		
 		ArrayList<EarthQuake> latBetween = new ArrayList<EarthQuake>();
 		
@@ -173,9 +171,9 @@ public class Console{
 		return latBetween;
 	}
 	
-	public static ArrayList<EarthQuake> SearchByLong(String long1, String long2) {
+	public static ArrayList<EarthQuake> SearchByLong(String long1, String long2, ArrayList<EarthQuake> earthquakes) {
 		
-		ArrayList<EarthQuake> earthquakes = getFileInformation();
+		//ArrayList<EarthQuake> earthquakes = getFileInformation();
 		
 		ArrayList<EarthQuake> longBetween = new ArrayList<EarthQuake>();
 		
@@ -202,9 +200,9 @@ public class Console{
 		return longBetween;
 	}
 	
-	public static ArrayList<EarthQuake> SearchByDate(String string1, String string2) {
+	public static ArrayList<EarthQuake> SearchByDate(String string1, String string2, ArrayList<EarthQuake> earthquakes) {
 		
-		ArrayList<EarthQuake> earthquakes = getFileInformation();
+		//ArrayList<EarthQuake> earthquakes = getFileInformation();
 		
 		ArrayList<EarthQuake> dateBetween = new ArrayList<EarthQuake>();
 		
