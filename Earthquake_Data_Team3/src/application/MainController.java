@@ -60,13 +60,17 @@ public class MainController implements Initializable, MapComponentInitializedLis
 	
 	
 	
-	private ArrayList<EarthQuake> currentSearchedQuakes;
+	public ArrayList<EarthQuake> currentSearchedQuakes;
+	
+	public ArrayList<EarthQuake> saveQuakes;
 	
 	ArrayList<Marker> markers = new ArrayList<Marker>();
 	
 	public void currentQuakeList(ArrayList<EarthQuake> currentQuakes) {
 		
 		currentSearchedQuakes = currentQuakes;
+		
+		saveQuakes = currentQuakes;
 	}
 	
 	public void newMapMarkers() {
@@ -94,10 +98,13 @@ public class MainController implements Initializable, MapComponentInitializedLis
 			
 			InfoWindowOptions quakeWindowOptions = new InfoWindowOptions();
 	        quakeWindowOptions.content(earthquakes.get(i).toString());
+	        
+	        EarthQuake quake = earthquakes.get(i);
 
 	        InfoWindow quakeWindow = new InfoWindow(quakeWindowOptions);
 	        
 	        map.addUIEventHandler(quakeMarker, UIEventType.click, (JSObject obj) -> {
+	        	saveQuakes.add(quake);
 	            quakeWindow.open(map, quakeMarker);
 	        });
 	        
@@ -131,15 +138,12 @@ public class MainController implements Initializable, MapComponentInitializedLis
 		}
 		
 		helpController.setHelpText("This is help text!");
-		helpController.setController(this);
 		helpWindowStage.show();
 	}
 
 	
 	@FXML
 	public void allOutAction(ActionEvent event) {
-		
-		
 		
 		//check is there is a window already
 		if (fileSaveWindowStage == null) {
@@ -160,11 +164,34 @@ public class MainController implements Initializable, MapComponentInitializedLis
 				e.printStackTrace();
 			}
 		}
+		fileController.setController(this);
 		fileSaveWindowStage.show();
 	}
 	
 	@FXML
 	public void selectionOutAction(ActionEvent event) {
+		
+		//check is there is a window already
+		if (fileSaveWindowStage == null) {
+			//if not, we create our window with this block of code
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/FileSaveWindow.fxml"));
+			AnchorPane fileSaveWindowPane;
+			
+			try {
+				fileSaveWindowPane = (AnchorPane)loader.load();
+				Scene fileSaveWindowScene = new Scene(fileSaveWindowPane);
+				fileSaveWindowStage = new Stage();
+				fileSaveWindowStage.setScene(fileSaveWindowScene);
+				fileSaveWindowStage.setTitle("File Save Window");
+				fileController = (FileSaveWindowController)loader.getController();
+				}
+			
+			catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		fileController.setController(this);
+		fileSaveWindowStage.show();
 	}
 	
 	// Event Listener on Button[#Search].onAction
@@ -262,6 +289,7 @@ public class MainController implements Initializable, MapComponentInitializedLis
 		searchDrop.getSelectionModel().select("Latitude");
 		
 		currentSearchedQuakes = Console.getFileInformation();
+		saveQuakes = Console.getFileInformation();
 		
 		mapView.addMapInializedListener(this);
 			

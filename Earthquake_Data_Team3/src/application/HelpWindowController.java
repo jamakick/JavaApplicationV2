@@ -22,15 +22,6 @@ public class HelpWindowController {
 		stage.close();
 	}
 	
-	//make a variable for our controller that we are setting from the placeorder window
-	private MainController callingController;
-	
-	//method to set controller from our other window
-	@FXML
-	public void setController(MainController c) {
-		callingController = c;
-	}
-	
 	@FXML
 	public void setHelpText(String helpText) {
 		helpTextLabel.setText(helpText);
