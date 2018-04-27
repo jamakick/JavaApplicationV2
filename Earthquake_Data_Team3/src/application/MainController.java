@@ -47,7 +47,50 @@ public class MainController implements Initializable, MapComponentInitializedLis
 	
 	private GoogleMap map;
 	
+	private ArrayList<EarthQuake> currentSearchedQuakes = Console.getFileInformation();
 	
+	ArrayList<Marker> markers = new ArrayList<Marker>();
+	
+	public void currentQuakeList(ArrayList<EarthQuake> currentQuakes) {
+		
+		currentSearchedQuakes = currentQuakes;
+	}
+	
+	public void newMapMarkers() {
+		
+		map.removeMarkers(markers);
+		
+		markers.clear();
+		
+		ArrayList<EarthQuake> earthquakes = currentSearchedQuakes;
+		
+		for(int i=0;i<750;i++) {
+			double latitude = Double.parseDouble(earthquakes.get(i).getLat());
+			double longitude = Double.parseDouble(earthquakes.get(i).getLong());
+			
+			LatLong quakeLoc= new LatLong(latitude, longitude);
+			
+			MarkerOptions quakeOptions = new MarkerOptions();
+			quakeOptions.position(quakeLoc);
+			
+			Marker quakeMarker = new Marker(quakeOptions);
+			
+			map.addMarker(quakeMarker);
+			
+			markers.add(quakeMarker);
+			
+			InfoWindowOptions quakeWindowOptions = new InfoWindowOptions();
+	        quakeWindowOptions.content(earthquakes.get(i).toString());
+
+	        InfoWindow quakeWindow = new InfoWindow(quakeWindowOptions);
+	        
+	        map.addUIEventHandler(quakeMarker, UIEventType.click, (JSObject obj) -> {
+	            quakeWindow.open(map, quakeMarker);
+	        });
+	        
+			
+		}
+	}
 	
 	// Event Listener on Button[#help].onAction
 	@FXML
@@ -71,16 +114,39 @@ public class MainController implements Initializable, MapComponentInitializedLis
 	// Event Listener on Button[#Search].onAction
 	@FXML
 	public void searchAction(ActionEvent event) {
+		
+		ArrayList<EarthQuake> searchQuakes = new ArrayList<EarthQuake>();
+		
+		String minimum = min.getText();
+		String maximum = max.getText();
+		String choice = searchDrop.getSelectionModel().getSelectedItem();
+		
+		switch (choice) {
+		
+		case "Date":
+			searchQuakes = Console.SearchByDate(minimum, maximum);
+			break;
+		
+		}
+		
+		currentQuakeList(searchQuakes);
+		newMapMarkers();
+		
 	}
 	
 	@FXML
 	public void resetAction(ActionEvent event) {
+		min.clear();
+		max.clear();
+		searchDrop.getSelectionModel().select("Latitude");
+		mapInitialized();
 	}
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		
-		searchDrop.getItems().addAll("Latitude", "Longitude", "Depth", "Magnitude");
+		searchDrop.getItems().addAll("Latitude", "Longitude", "Depth", "Magnitude", "Date", "Status", "Place", "Magnitude Type");
+		searchDrop.getSelectionModel().select("Latitude");
 		
 		mapView.addMapInializedListener(this);
 			
@@ -99,7 +165,7 @@ public class MainController implements Initializable, MapComponentInitializedLis
 		
 		ArrayList<EarthQuake> earthquakes = Console.getFileInformation();
 		
-		for(int i=0;i<earthquakes.size();i++) {
+		for(int i=0;i<750;i++) {
 			double latitude = Double.parseDouble(earthquakes.get(i).getLat());
 			double longitude = Double.parseDouble(earthquakes.get(i).getLong());
 			
@@ -111,6 +177,8 @@ public class MainController implements Initializable, MapComponentInitializedLis
 			Marker quakeMarker = new Marker(quakeOptions);
 			
 			map.addMarker(quakeMarker);
+			
+			markers.add(quakeMarker);
 			
 			InfoWindowOptions quakeWindowOptions = new InfoWindowOptions();
 	        quakeWindowOptions.content(earthquakes.get(i).toString());
