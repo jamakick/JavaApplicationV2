@@ -79,6 +79,9 @@ public class MainController implements Initializable, MapComponentInitializedLis
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		
+		searchDrop.getItems().addAll("Latitude", "Longitude", "Depth", "Magnitude");
+		
 		mapView.addMapInializedListener(this);
 			
 	}
@@ -96,7 +99,7 @@ public class MainController implements Initializable, MapComponentInitializedLis
 		
 		ArrayList<EarthQuake> earthquakes = Console.getFileInformation();
 		
-		for(int i=0;i<50;i++) {
+		for(int i=0;i<earthquakes.size();i++) {
 			double latitude = Double.parseDouble(earthquakes.get(i).getLat());
 			double longitude = Double.parseDouble(earthquakes.get(i).getLong());
 			
