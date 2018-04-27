@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import netscape.javascript.JSObject;
 
 import java.net.URL;
@@ -46,6 +47,14 @@ public class MainController implements Initializable, MapComponentInitializedLis
 	private GoogleMapView mapView;
 	
 	private GoogleMap map;
+	
+	private Stage helpWindowStage;
+	private helpWindowController helpController;
+	
+	private Stage fileSaveWindowStage;
+	private fileSaveWindowController fileController;
+	
+	
 	
 	private ArrayList<EarthQuake> currentSearchedQuakes;
 	
