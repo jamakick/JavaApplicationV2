@@ -144,6 +144,64 @@ public class Console{
 		return locBetween;
 	}
 	
+	public static ArrayList<EarthQuake> SearchByLat(String lat1, String lat2) {
+		
+		ArrayList<EarthQuake> earthquakes = getFileInformation();
+		
+		ArrayList<EarthQuake> latBetween = new ArrayList<EarthQuake>();
+		
+		double latNum1 = 0f;
+		double latNum2 = 0f;
+		
+		try {
+			latNum1 = Double.parseDouble(lat1);;
+			latNum2 = Double.parseDouble(lat2);
+		} catch(Exception e) {
+			System.out.println("Those are not valid coordinates");
+		}
+		
+		for (int i = 0; i < earthquakes.size(); i++) {
+			
+			double quakeLat = Double.parseDouble(earthquakes.get(i).getLat());
+			
+			//nested if statement
+			//first we check if our earthquakes lat is in between our two latitude args
+			if(quakeLat >= latNum1 && quakeLat <= latNum2) {
+					latBetween.add(earthquakes.get(i));}
+		}
+		
+		return latBetween;
+	}
+	
+	public static ArrayList<EarthQuake> SearchByLong(String long1, String long2) {
+		
+		ArrayList<EarthQuake> earthquakes = getFileInformation();
+		
+		ArrayList<EarthQuake> longBetween = new ArrayList<EarthQuake>();
+		
+		double longNum1 = 0f;
+		double longNum2 = 0f;
+		
+		try {
+			longNum1 = Double.parseDouble(long1);;
+			longNum2 = Double.parseDouble(long2);
+		} catch(Exception e) {
+			System.out.println("Those are not valid coordinates");
+		}
+		
+		for (int i = 0; i < earthquakes.size(); i++) {
+			
+			double quakeLong = Double.parseDouble(earthquakes.get(i).getLong());
+			
+			//nested if statement
+			//first we check if our earthquakes lat is in between our two latitude args
+			if(quakeLong >= longNum1 && quakeLong <= longNum2) {
+					longBetween.add(earthquakes.get(i));}
+		}
+		
+		return longBetween;
+	}
+	
 	public static ArrayList<EarthQuake> SearchByDate(String string1, String string2) {
 		
 		ArrayList<EarthQuake> earthquakes = getFileInformation();
