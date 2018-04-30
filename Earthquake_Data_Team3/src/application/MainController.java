@@ -28,6 +28,7 @@ import com.lynden.gmapsfx.javascript.object.Marker;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 
 
 public class MainController implements Initializable, MapComponentInitializedListener{
@@ -49,15 +50,18 @@ public class MainController implements Initializable, MapComponentInitializedLis
 	private TextField max;
 	@FXML
 	private GoogleMapView mapView;
+	@FXML
+	private Label numText;
 	
 	private GoogleMap map;
 	
 	private Stage helpWindowStage;
 	private HelpWindowController helpController;
 	
+	
 	private Stage fileSaveWindowStage;
 	private FileSaveWindowController fileController;
-	
+
 	
 	
 	public ArrayList<EarthQuake> currentSearchedQuakes;
@@ -136,8 +140,6 @@ public class MainController implements Initializable, MapComponentInitializedLis
 				e.printStackTrace();
 			}
 		}
-		
-		helpController.setHelpText("This is help text!");
 		helpWindowStage.show();
 	}
 
@@ -242,6 +244,8 @@ public class MainController implements Initializable, MapComponentInitializedLis
 		currentQuakeList(searchQuakes);
 		newMapMarkers();
 		
+		numText.setText(Integer.toString(currentSearchedQuakes.size())+" earthquakes shown");
+		
 	}
 	
 	@FXML
@@ -278,6 +282,8 @@ public class MainController implements Initializable, MapComponentInitializedLis
 	            quakeWindow.open(map, quakeMarker);
 	        });
 	        
+	        numText.setText(Integer.toString(earthquakes.size())+" earthquakes shown");
+	        
 			
 		}
 	}
@@ -288,8 +294,10 @@ public class MainController implements Initializable, MapComponentInitializedLis
 		searchDrop.getItems().addAll("Latitude", "Longitude", "Depth", "Magnitude", "Date", "Status", "Place", "Magnitude Type");
 		searchDrop.getSelectionModel().select("Latitude");
 		
+		
 		currentSearchedQuakes = Console.getFileInformation();
 		saveQuakes = Console.getFileInformation();
+		
 		
 		mapView.addMapInializedListener(this);
 			
@@ -306,7 +314,9 @@ public class MainController implements Initializable, MapComponentInitializedLis
 		
 		map = mapView.createMap(mapOptions, false);
 		
+		
 		ArrayList<EarthQuake> earthquakes = Console.getFileInformation();
+		numText.setText(Integer.toString(earthquakes.size())+" earthquakes shown");
 		
 		for(int i=0;i<earthquakes.size();i++) {
 			double latitude = Double.parseDouble(earthquakes.get(i).getLat());
@@ -335,15 +345,9 @@ public class MainController implements Initializable, MapComponentInitializedLis
 	            quakeWindow.open(map, quakeMarker);
 	        });
 	        
+	        
 			
 		}
-		
-//		MarkerOptions markerOptions1 = new MarkerOptions();
-//        markerOptions1.position(loc1);
-//        
-//        Marker loc1Marker = new Marker(markerOptions1);
-//  
-//		map.addMarker(loc1Marker);
         
 	}
 }
