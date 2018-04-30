@@ -324,7 +324,10 @@ public class MainController implements Initializable, MapComponentInitializedLis
 			markers.add(quakeMarker);
 			
 			InfoWindowOptions quakeWindowOptions = new InfoWindowOptions();
-	        quakeWindowOptions.content(earthquakes.get(i).toString());
+			
+			//window text
+	        quakeWindowOptions.content("<h3> Earthquake entry #"+ Integer.toString(i) + "</h3> Earthquake ID: "+earthquakes.get(i).getID()+"<br> Place: "+ earthquakes.get(i).getPlace()+ "<br> Latitude: "+ earthquakes.get(i).getLat() + "° <br> Longitude: "
+	        		+ earthquakes.get(i).getLong() + "°<br> Magnitude: "+ earthquakes.get(i).getMag() + "<br> Depth: "+ earthquakes.get(i).getDepth()+" km");
 
 	        InfoWindow quakeWindow = new InfoWindow(quakeWindowOptions);
 	        
