@@ -9,6 +9,9 @@ import java.util.Date;
 
 public class Console{
 	
+	//to make it match our gui controller arguments, all the methods had to take the earthquakes list as an argument
+	//this made us able to refine our search since they would search by the current searched quakes and not the getfileinfo quakes
+	
 	public static ArrayList<EarthQuake> SearchByPlace(String place, ArrayList<EarthQuake> earthquakes) {
 		
 		//ArrayList<EarthQuake> earthquakes = getFileInformation();
@@ -142,6 +145,8 @@ public class Console{
 		return locBetween;
 	}
 	
+	//this searchbylat was added so that we can distinguish between latitude and longitude in our gui, 
+	//so you don't have to search by both at the same time
 	public static ArrayList<EarthQuake> SearchByLat(String lat1, String lat2, ArrayList<EarthQuake> earthquakes) {
 		
 		//ArrayList<EarthQuake> earthquakes = getFileInformation();
@@ -162,7 +167,6 @@ public class Console{
 			
 			double quakeLat = Double.parseDouble(earthquakes.get(i).getLat());
 			
-			//nested if statement
 			//first we check if our earthquakes lat is in between our two latitude args
 			if(quakeLat >= latNum1 && quakeLat <= latNum2) {
 					latBetween.add(earthquakes.get(i));}
@@ -171,6 +175,8 @@ public class Console{
 		return latBetween;
 	}
 	
+	//this searchbylong was added so that we can distinguish between latitude and longitude in our gui, 
+	//so you don't have to search by both at the same time
 	public static ArrayList<EarthQuake> SearchByLong(String long1, String long2, ArrayList<EarthQuake> earthquakes) {
 		
 		//ArrayList<EarthQuake> earthquakes = getFileInformation();
@@ -191,8 +197,7 @@ public class Console{
 			
 			double quakeLong = Double.parseDouble(earthquakes.get(i).getLong());
 			
-			//nested if statement
-			//first we check if our earthquakes lat is in between our two latitude args
+			//first we check if our earthquakes long is in between our two longitude args
 			if(quakeLong >= longNum1 && quakeLong <= longNum2) {
 					longBetween.add(earthquakes.get(i));}
 		}
@@ -248,7 +253,7 @@ public class Console{
 	}
 	
 	
-	
+	//restructured the arraylist being made into a method and added null checking
 	public static ArrayList<EarthQuake> getFileInformation() {
 		
 		ArrayList<EarthQuake> earthArray = new ArrayList<>();
@@ -494,6 +499,8 @@ public class Console{
 		
 		
 	}
+	
+	//the below code is our console code that ran the command prompt
 	
 //	@Override
 //	public void start() {
