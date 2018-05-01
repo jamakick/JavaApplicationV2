@@ -32,6 +32,7 @@ import javafx.scene.control.Label;
 
 
 public class MainController implements Initializable, MapComponentInitializedListener{
+	//gets all the variables from our fxml
 	@FXML
 	private Button help;
 	@FXML
@@ -55,21 +56,24 @@ public class MainController implements Initializable, MapComponentInitializedLis
 	
 	private GoogleMap map;
 	
+	//create our stages and controllers for our two popup windows
 	private Stage helpWindowStage;
 	private HelpWindowController helpController;
-	
-	
 	private Stage fileSaveWindowStage;
 	private FileSaveWindowController fileController;
 
 	
-	
+	//this is an arrayList that is constantly updated so that we can refine our searches rather than resetting it every time
 	public ArrayList<EarthQuake> currentSearchedQuakes;
 	
+	//this arraylist is used to save to our text files
 	public ArrayList<EarthQuake> saveQuakes;
 	
+	//this arraylist holds all of our earthquake markers so we can remove them when we refine the search
 	ArrayList<Marker> markers = new ArrayList<Marker>();
 	
+	
+	//method that takes an arraylist of earthquakes and makes it the new save and searchedquakes lists
 	public void currentQuakeList(ArrayList<EarthQuake> currentQuakes) {
 		
 		currentSearchedQuakes = currentQuakes;
@@ -77,36 +81,49 @@ public class MainController implements Initializable, MapComponentInitializedLis
 		saveQuakes = currentQuakes;
 	}
 	
+	//method that creates new map markers on our gmaps window
 	public void newMapMarkers() {
 		
+		//we use our arraylist to remove all the markers on our map
 		map.removeMarkers(markers);
 		
+		//we then clear the arraylist so we can use it again
 		markers.clear();
 		
+		//we pull in our earthquakes from our currentsearched quakes
 		ArrayList<EarthQuake> earthquakes = currentSearchedQuakes;
 		
+		
+		//for every earthquake, we get its lat and long
 		for(int i=0;i<earthquakes.size();i++) {
 			double latitude = Double.parseDouble(earthquakes.get(i).getLat());
 			double longitude = Double.parseDouble(earthquakes.get(i).getLong());
 			
+			//we construct the latlong
 			LatLong quakeLoc= new LatLong(latitude, longitude);
 			
+			//make a new markeroptions with our latlong
 			MarkerOptions quakeOptions = new MarkerOptions();
 			quakeOptions.position(quakeLoc);
 			
+			//make a new marker with the options and add it to the map
 			Marker quakeMarker = new Marker(quakeOptions);
 			
 			map.addMarker(quakeMarker);
 			
+			//we also add it to our arraylist so we can remove it later
 			markers.add(quakeMarker);
 			
+			//this code adds the info to our marker so when you click you see the toString of the earthquake
 			InfoWindowOptions quakeWindowOptions = new InfoWindowOptions();
-	        quakeWindowOptions.content(earthquakes.get(i).toString());
+	        quakeWindowOptions.content("<h3> Earthquake entry #"+ Integer.toString(i) + "</h3> Earthquake ID: "+earthquakes.get(i).getID()+"<br> Date: "+ earthquakes.get(i).getTime()+"<br> Status: "+ earthquakes.get(i).getStatus()+"<br> Place: "+ earthquakes.get(i).getPlace()+ "<br> Latitude: "+ earthquakes.get(i).getLat() + "° <br> Longitude: "
+	        		+ earthquakes.get(i).getLong() + "°<br> Magnitude: "+ earthquakes.get(i).getMag()+"<br> Magnitude Type: "+ earthquakes.get(i).getMagType() + "<br> Depth: "+ earthquakes.get(i).getDepth()+" km");
 	        
 	        EarthQuake quake = earthquakes.get(i);
 
 	        InfoWindow quakeWindow = new InfoWindow(quakeWindowOptions);
 	        
+	        //this makes it clickable so they don't all show up at once
 	        map.addUIEventHandler(quakeMarker, UIEventType.click, (JSObject obj) -> {
 	        	saveQuakes.add(quake);
 	            quakeWindow.open(map, quakeMarker);
@@ -127,6 +144,7 @@ public class MainController implements Initializable, MapComponentInitializedLis
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/HelpWindow.fxml"));
 			AnchorPane helpWindowPane;
 			
+			//creates our window
 			try {
 				helpWindowPane = (AnchorPane)loader.load();
 				Scene helpWindowScene = new Scene(helpWindowPane);
@@ -140,6 +158,7 @@ public class MainController implements Initializable, MapComponentInitializedLis
 				e.printStackTrace();
 			}
 		}
+		//shows the window
 		helpWindowStage.show();
 	}
 
@@ -153,6 +172,7 @@ public class MainController implements Initializable, MapComponentInitializedLis
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/FileSaveWindow.fxml"));
 			AnchorPane fileSaveWindowPane;
 			
+			//creates our window
 			try {
 				fileSaveWindowPane = (AnchorPane)loader.load();
 				Scene fileSaveWindowScene = new Scene(fileSaveWindowPane);
@@ -166,7 +186,9 @@ public class MainController implements Initializable, MapComponentInitializedLis
 				e.printStackTrace();
 			}
 		}
+		//sets this controller to the allOutWindow so it can use saveQuakes
 		fileController.setController(this);
+		//show the window
 		fileSaveWindowStage.show();
 	}
 	
@@ -179,6 +201,7 @@ public class MainController implements Initializable, MapComponentInitializedLis
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/FileSaveWindow.fxml"));
 			AnchorPane fileSaveWindowPane;
 			
+			//create window
 			try {
 				fileSaveWindowPane = (AnchorPane)loader.load();
 				Scene fileSaveWindowScene = new Scene(fileSaveWindowPane);
@@ -192,6 +215,7 @@ public class MainController implements Initializable, MapComponentInitializedLis
 				e.printStackTrace();
 			}
 		}
+		//show the window and set the controller again to get saveQuakes
 		fileController.setController(this);
 		fileSaveWindowStage.show();
 	}
@@ -200,12 +224,15 @@ public class MainController implements Initializable, MapComponentInitializedLis
 	@FXML
 	public void searchAction(ActionEvent event) {
 		
+		//create a new earthquake list for our search to put into
 		ArrayList<EarthQuake> searchQuakes = new ArrayList<EarthQuake>();
 		
+		//get the options from our user in the GUI
 		String minimum = min.getText();
 		String maximum = max.getText();
 		String choice = searchDrop.getSelectionModel().getSelectedItem();
 		
+		//looks at the option made and runs the correct method with our min and max or just min for the equals methods
 		switch (choice) {
 		
 		case "Date":
@@ -241,23 +268,29 @@ public class MainController implements Initializable, MapComponentInitializedLis
 			break;
 		}
 		
+		//replace our currentquakelist
 		currentQuakeList(searchQuakes);
+		//remakes our map markers with the current list
 		newMapMarkers();
 		
+		//shows the user how many earthquakes are being displayed
 		numText.setText(Integer.toString(currentSearchedQuakes.size())+" earthquakes shown");
 		
 	}
 	
 	@FXML
 	public void resetAction(ActionEvent event) {
+		//clears the window of all selections
 		min.clear();
 		max.clear();
 		markers.clear();
 		searchDrop.getSelectionModel().select("Latitude");
 		
+		//here we reset our currentquakes back to the original from our console so the search goes back to the original set of data
 		ArrayList<EarthQuake> earthquakes = Console.getFileInformation();
 		currentQuakeList(earthquakes);
 		
+		//we rerun our mapinitialize code here to remake all the markers from the original earthquake list
 		for(int i=0;i<earthquakes.size();i++) {
 			double latitude = Double.parseDouble(earthquakes.get(i).getLat());
 			double longitude = Double.parseDouble(earthquakes.get(i).getLong());
@@ -274,7 +307,8 @@ public class MainController implements Initializable, MapComponentInitializedLis
 			markers.add(quakeMarker);
 			
 			InfoWindowOptions quakeWindowOptions = new InfoWindowOptions();
-	        quakeWindowOptions.content(earthquakes.get(i).toString());
+	        quakeWindowOptions.content("<h3> Earthquake entry #"+ Integer.toString(i) + "</h3> Earthquake ID: "+earthquakes.get(i).getID()+"<br> Date: "+ earthquakes.get(i).getTime()+"<br> Status: "+ earthquakes.get(i).getStatus()+"<br> Place: "+ earthquakes.get(i).getPlace()+ "<br> Latitude: "+ earthquakes.get(i).getLat() + "° <br> Longitude: "
+	        		+ earthquakes.get(i).getLong() + "°<br> Magnitude: "+ earthquakes.get(i).getMag()+"<br> Magnitude Type: "+ earthquakes.get(i).getMagType() + "<br> Depth: "+ earthquakes.get(i).getDepth()+" km");
 
 	        InfoWindow quakeWindow = new InfoWindow(quakeWindowOptions);
 	        
@@ -291,14 +325,15 @@ public class MainController implements Initializable, MapComponentInitializedLis
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		
+		//in our initialize we add the items to our choicebox and select the first one as a default
 		searchDrop.getItems().addAll("Latitude", "Longitude", "Depth", "Magnitude", "Date", "Status", "Place", "Magnitude Type");
 		searchDrop.getSelectionModel().select("Latitude");
 		
-		
+		//on initialize we make our current and savequakes the original earthquake list
 		currentSearchedQuakes = Console.getFileInformation();
 		saveQuakes = Console.getFileInformation();
 		
-		
+		//add the listener to our map window
 		mapView.addMapInializedListener(this);
 			
 	}
@@ -307,6 +342,8 @@ public class MainController implements Initializable, MapComponentInitializedLis
 	public void mapInitialized() {
 		//LatLong loc1 = new LatLong(39.1710061, -86.51679969999998);
 		
+		//the code below makes our gmaps map appear
+		
 		MapOptions mapOptions = new MapOptions();
 		
 		mapOptions.center(new LatLong(39.1710061, -86.51679969999998)).mapType(MapTypeIdEnum.TERRAIN).zoom(4);
@@ -314,7 +351,7 @@ public class MainController implements Initializable, MapComponentInitializedLis
 		
 		map = mapView.createMap(mapOptions, false);
 		
-		
+		//we take our original list and initialize the original set of markers that the user sees when the window opens
 		ArrayList<EarthQuake> earthquakes = Console.getFileInformation();
 		numText.setText(Integer.toString(earthquakes.size())+" earthquakes shown");
 		
@@ -336,8 +373,8 @@ public class MainController implements Initializable, MapComponentInitializedLis
 			InfoWindowOptions quakeWindowOptions = new InfoWindowOptions();
 			
 			//window text
-	        quakeWindowOptions.content("<h3> Earthquake entry #"+ Integer.toString(i) + "</h3> Earthquake ID: "+earthquakes.get(i).getID()+"<br> Place: "+ earthquakes.get(i).getPlace()+ "<br> Latitude: "+ earthquakes.get(i).getLat() + "° <br> Longitude: "
-	        		+ earthquakes.get(i).getLong() + "°<br> Magnitude: "+ earthquakes.get(i).getMag() + "<br> Depth: "+ earthquakes.get(i).getDepth()+" km");
+	        quakeWindowOptions.content("<h3> Earthquake entry #"+ Integer.toString(i) + "</h3> Earthquake ID: "+earthquakes.get(i).getID()+"<br> Date: "+ earthquakes.get(i).getTime()+"<br> Status: "+ earthquakes.get(i).getStatus()+"<br> Place: "+ earthquakes.get(i).getPlace()+ "<br> Latitude: "+ earthquakes.get(i).getLat() + "° <br> Longitude: "
+	        		+ earthquakes.get(i).getLong() + "°<br> Magnitude: "+ earthquakes.get(i).getMag()+"<br> Magnitude Type: "+ earthquakes.get(i).getMagType() + "<br> Depth: "+ earthquakes.get(i).getDepth()+" km");
 
 	        InfoWindow quakeWindow = new InfoWindow(quakeWindowOptions);
 	        

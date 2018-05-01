@@ -8,8 +8,6 @@ import javafx.scene.layout.AnchorPane;
 
 public class Main extends Application {
 	
-	MainController mainController;
-	
 	@Override
 	public void start(Stage primaryStage) {
 		
@@ -17,7 +15,7 @@ public class Main extends Application {
 			// set a title for the Window
 			primaryStage.setTitle("Earthquake Window");
 
-			// get an FXML loade	r and read in the fxml code
+			// get an FXML loader and read in the fxml code
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("/EarthquakeData.fxml"));
 			AnchorPane mainLayout = (AnchorPane)loader.load();
